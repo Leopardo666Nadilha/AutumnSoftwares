@@ -11,6 +11,7 @@ The site is hosted on Vercel and can be accessed at: **www.autumnsoftwares.com**
 * **Dual Theme (Light/Dark Mode):** Automatic system detection (`prefers-color-scheme`) and a manual toggle button (Sun/Moon) for user control.
 * **Modern UI:** Subtle `fade-in` animations on scroll (`useEffect` and CSS Transitions) for a fluid navigation experience.
 * **Multi-Step Form:** A 4-step "Request Project" form for lead qualification, improving the user experience.
+* **Modular Styling:** Uses CSS Modules for component-local styles and `globals.css` for theme variables (color palette).
 
 ## 🛠️ Tech Stack
 
