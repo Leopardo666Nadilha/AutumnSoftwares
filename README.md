@@ -2,7 +2,7 @@
 
 This is the official repository for the institutional website of Autumn Softwares, a custom software development company. The project was built with a focus on performance (Next.js SSG), responsive design (desktop-first), and a mature brand identity based on autumn tones.
 
-The site is hosted on Vercel and can be accessed at: **autumn-softwares.vercel.app**
+The site is hosted on Vercel and can be accessed at: [**autumn-softwares.vercel.app**](https://autumn-softwares.vercel.app)
 
 ## ✨ Features
 
@@ -39,8 +39,8 @@ Follow the steps below to run the project on your machine.
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/your-username/autumn-softwares.git](https://github.com/your-username/autumn-softwares.git)
-    cd autumn-softwares
+    git clone [https://github.com/Leopardo666Nadilha/AutumnSoftwares.git](https://github.com/Leopardo666Nadilha/AutumnSoftwares.git)
+    cd AutumnSoftwares
     ```
 
 2.  **Install dependencies:**
