@@ -67,7 +67,7 @@ export default function Layout({ children }) {
             <Head>
                 <title>Autumn Softwares</title>
                 <meta name="description" content="Portfólio de projetos da Autumn Softwares" />
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="/head-photo.jpg"/>
             </Head>
             <Header />
             <main>{children}</main>
