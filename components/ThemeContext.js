@@ -16,14 +16,23 @@ export function ThemeProvider({ children }) {
 
   // Função para alternar o tema
   const toggleTheme = () => {
-    setTheme(prevTheme => {
-      const newTheme = prevTheme === 'light' ? 'dark' : 'light';
-      document.documentElement.classList.remove('light', 'dark');
-      document.documentElement.classList.add(newTheme);
-      localStorage.setItem('theme', newTheme); // Armazena a preferência do usuário para o próximo acesso
-      return newTheme;
-    });
-  };
+      setTheme(prevTheme => {
+        const newTheme = prevTheme === 'light' ? 'dark' : 'light';
+
+        // 1. Faça a mudança visual (A parte principal do INP)
+        document.documentElement.classList.remove('light', 'dark');
+        document.documentElement.classList.add(newTheme); 
+
+        // 2. ADIE a escrita em disco para o próximo "tick" do navegador.
+        // Isso libera o main thread para concluir a "pintura" (INP)
+        // antes de se preocupar em salvar no disco.
+        setTimeout(() => {
+          localStorage.setItem('theme', newTheme);
+        }, 0);
+
+        return newTheme;
+      });
+    };
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
