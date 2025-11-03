@@ -2,7 +2,7 @@
 
 This is the official repository for the institutional website of Autumn Softwares, a custom software development company. The project was built with a focus on performance (Next.js SSG), responsive design (desktop-first), and a mature brand identity based on autumn tones.
 
-The site is hosted on Vercel and can be accessed at: **www.autumnsoftwares.com**
+The site is hosted on Vercel and can be accessed at: **autumn-softwares.vercel.app**
 
 ## ✨ Features
 
