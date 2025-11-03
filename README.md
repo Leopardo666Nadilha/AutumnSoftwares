@@ -61,4 +61,4 @@ Follow the steps below to run the project on your machine.
     Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 ## 📄 License
 
-This project is the property of Autumn Softwares. The source code for the conceptual projects in the portfolio (PontoCerto SaaS, Ordo Finances) is available under the MIT License.
+This project is the property of Autumn Softwares.
