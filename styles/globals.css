@@ -1,0 +1,1368 @@
+:root {
+    --color-background: #F5F2EC;        /* Bege puxado para o "creme" com toque de calor  */
+    --color-text: #3E3A39;              /* Grafite "Café" (Escuro e quente) */
+    --color-text-title: #EAE6E3;        /* Texto "Pergaminho" (Claro e quente) */
+    --color-primary: #D95F43;           /* Laranja "Terracota" (Para botões e CTAs) */
+    --color-accent: #5A6349;            /* Verde "Oliva" (Para detalhes ou subtítulos) */
+    --color-button-background: #2D3748; /* Fundo escuro para botões secundários */
+    --color-button-text: #FAF8F5;       /* Texto claro para botões secundários */
+    --color-text-compromise: #D95F43;   /* Mesma cor primária, porém sem alterar com a mudança de light e dark mode*/
+    --color-card-background: #FAF8F5;   /* Cor de fundo para os cards no modo claro */
+    --color-footer: #5A6349;            /* Cor de fundo para o footer */
+    --color-title-footer: #E07A5F;      /* Mesma terracota brilhante do dark mode para o footer*/
+    --color-button-portfolio: #2A2726;   /* Cor de fundo para os botoes do portfólio no modo claro */
+  }
+
+/* Substitui o media query por uma classe .dark para o funcionamento do botão do modo de tema*/
+:root.dark {
+    --color-background: #2D2B29;        /* Fundo "Café" (Bem escuro e quente) */
+    --color-text: #EAE6E3;              /* Texto "Pergaminho" (Claro e quente) */
+    --color-primary: #E07A5F;           /* Laranja "Terracota" (Mais brilhante para pop-up) */
+    --color-accent: #8C9A79;            /* Verde "Oliva" (Mais claro) */
+    --color-text-title: #EAE6E3;        /* Mantém a mesma cor para títulos em fundo escuro */
+    --color-card-background: #2A2726;   /* Cor de fundo para os cards no modo escuro */
+    --color-button-portfolio: #E07A5F;  /* Cor de fundo para os botoes do portfólio no modo escuro */
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    background-color: var(--color-background);
+}
+
+body {
+    font-family: var(--font-family-body);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    color: var(--color-text);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-headings);
+    color: var(--color-accent);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.title-full{
+    font-family: var(--font-family-body);
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.title-header{
+    font-family: var(--font-family-body);
+    font-weight: 800;
+    color: var(--color-primary);
+
+}
+
+.nav-link {
+    margin-right: 25px;
+    transition: color 0.3s ease;
+    position: relative;
+    padding-bottom: 5px; /* Espaço para a borda inferior */
+    font-size: 16px;
+}
+
+/* Efeito de hover para links que NÃO estão ativos */
+.nav-link:hover {
+    color: var(--color-primary);
+}
+
+/* Estilo para o link da página ATUAL */
+.nav-link.active {
+    color: var(--color-primary);
+    font-weight: 600; 
+}
+
+/* Garante que os grupos de navegação fiquem juntos por padrão (desktop) */
+.nav-links-group, .nav-actions-group {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espaçamento entre os itens e os grupos */
+}
+/* Estilo para o botão "Call to Action" (Solicitar Projeto) */
+.cta-link {
+    background-color: var(--color-primary);
+    color: var(--color-text-title);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    display: inline-block; /* Permite que a transformação (scale) funcione */
+    transition: transform 0.2s ease-in-out, background-color 0.3s ease, color 0.3s ease;
+}
+
+.cta-link:hover {
+    transform: scale(1.05); /* Aumenta o tamanho do botão em 5% */
+}
+
+.theme-toggle-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease, transform 0.2s ease-in-out;
+}
+
+.theme-toggle-button:hover {
+    color: var(--color-primary);
+    transform: scale(1.1);
+}
+
+.destaque-title {
+    color: #D69E2E; /* Cor fixa para o destaque do texto*/
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+
+    /* Adições para o header fixo */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    /* Efeito de vidro fosco (frosted glass) */
+    transition: background-color 0.3s ease;
+    background-color: color-mix(in srgb, var(--color-background) 85%, transparent);
+    -webkit-backdrop-filter: blur(8px); /* Para Safari */
+    backdrop-filter: blur(8px); /* Desfoque para o conteúdo atrás */
+
+    border-bottom: 1px solid color-mix(in srgb, var(--color-text) 15%, transparent);
+}
+
+.hero-section {
+    /* Define a altura para ocupar 100% da tela menos a altura do header */
+    height: calc(100vh - 70px); 
+    /* Centraliza o conteúdo dentro da seção */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Necessário para posicionar o ícone de rolagem */
+    text-align: center;
+}
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+    z-index: 1;
+}
+
+.hero-content h1 {
+    font-size: 4rem; /* Tamanho maior para o título principal */
+    color: var(--color-text-title); /* Cor fixa para o título principal */
+    /* Animação de fade-in */
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 0.5s forwards;
+}
+
+.hero-content p {
+    font-size: 1.25rem;
+    color: #EAE6E3; /* Cor fixa para o subtítulo */
+    /* Animação de fade-in com delay */
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 0.8s forwards;
+}
+
+/* Estilos para o indicador de rolagem */
+.scroll-down-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    cursor: pointer;
+    /* Animação de fade-in com delay maior */
+    opacity: 0;
+    z-index: 2; /* Garante que o indicador fique acima do overlay */
+    animation: fadeInUp 1s ease-out 1.2s forwards;
+}
+
+/* Estilos para o corpo do mouse customizado */
+.mouse-icon {
+    width: 28px;
+    height: 48px;
+    border: 2px solid var(--color-text-title);
+    border-radius: 15px;
+    position: relative;
+    animation: mouseBob 2s ease-in-out infinite; /* Movimento */
+}
+
+/* Estilos para a rodinha de rolagem */
+.mouse-scroll-wheel {
+    width: 4px;
+    height: 8px;
+    background-color: var(--color-text-title);
+    border-radius: 2px;
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scrollWheel 2s ease-in-out infinite; /* Movimento mais rápido */
+}
+
+/* Animação sutil de subida e descida para o corpo do mouse */
+@keyframes mouseBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(5px); }
+}
+
+/* Animação para a rodinha de rolagem */
+@keyframes scrollWheel {
+    0% { top: 8px; opacity: 1; }
+    50% { top: 14px; opacity: 1; }   /* Movimento menor */
+    100% { top: 14px; opacity: 0; }  /* Movimento menor */
+}
+
+/* Animação de fade-in e subida para os elementos do hero */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Container para os botões do Hero */
+.hero-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    /* Animação de fade-in com delay maior */
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 1s forwards;
+}
+
+/* Estilo do botão primário (preenchido) */
+.hero-cta-primary {
+    background-color: #D69E2E; /* Cor mostarda do destaque */
+    color: #2D2B29; /* Cor de texto escura para contraste */
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    min-width: 280px; /* Define uma largura mínima */
+    text-align: center; /* Garante que o texto fique centralizado */
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.hero-cta-primary:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+/* Estilo do botão secundário (vazado) */
+.hero-cta-secondary {
+    background-color: var(--color-button-background); /* Cor de fundo escura */
+    color: var(--color-button-text); /* Cor de texto clara para contraste */
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    min-width: 280px;
+    text-align: center;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.hero-cta-secondary:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2); /* Aumenta o brilho no hover */
+}
+
+.next-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 100px 40px;
+    min-height: 500px;
+    gap: 20px;
+    border-radius: 12px; /* Adiciona bordas arredondadas para o efeito de sombra ficar mais bonito */
+    transition: background-color 0.3s ease-in-out;
+}
+
+.title-section-about{
+    font-family: var(--font-family-body);
+    color: var(--color-text);
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    font-weight: 700;
+}
+
+.subtitle-section-about{
+    font-family: var(--font-family-body);
+    color: var(--color-text);
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    max-width: 800px;
+    margin: 10px auto 0; /* Centraliza o bloco horizontalmente */
+    text-align: center;
+}
+
+.benefits-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 40px;
+    margin-top: 50px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Estilo para cada bloco de benefício */ 
+.benefit-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center; 
+    flex: 1; /* Faz com que cada item ocupe um espaço igual */
+    max-width: 400px;
+    background-color: color-mix(in srgb, var(--color-background) 95%, #000 5%);
+    border-radius: 20px;
+    padding: 2em 3em;
+    border: 2px solid transparent;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; /* Transição suave */
+}
+
+/* Efeito de hover para o card de benefício */
+.benefit-item:hover {
+    transform: scale(1.05); /* Aumenta o tamanho do card */
+    border-color: var(--color-primary); /* Adiciona a borda com a cor primária */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidade */
+}
+
+/* Estilo para o ícone */
+.benefit-icon {
+    font-size: 3rem; /* Tamanho do ícone */
+    color: var(--color-primary); /* Cor do ícone */
+    margin-bottom: 15px; /* Espaço abaixo do ícone */
+    transition: transform 0.3s ease; /* Transição suave para o ícone */
+}
+
+.benefit-item:hover .benefit-icon {
+    transform: translateY(-10px) scale(1.1); /* Desloca para cima e aumenta um pouco o ícone */
+}
+
+/* Estilo para o título do benefício */
+.title-benefits {
+    font-family: var(--font-family-headings);
+    font-size: 1.5rem;
+    color: var(--color-text);
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+/* Estilo para o texto do benefício */
+.text-benefits {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.compromise-container{
+    /* Adiciona uma camada branca semi-transparente sobre a imagem */
+    background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('/section-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 500px;
+    padding: 60px 40px;
+}
+
+.title-section-compromise {
+    font-family: var(--font-family-body);
+    color: var(--color-text-title);
+    font-size: 36px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.title-compromise {
+    color: var(--color-text-compromise);
+}
+
+.compromise-banner {
+    display: flex;
+    justify-content: center;
+    align-items: stretch; /* Faz os cards terem a mesma altura */
+    gap: 40px;
+    margin-top: 70px;
+}
+
+.compromise-card {
+    flex: 1; /* Faz com que cada card ocupe um espaço igual */
+    max-width: 420px;
+    text-align: left;
+    display: flex;
+    position: relative; /* Necessário para posicionar o ícone de aspas */
+    overflow: hidden; /* Garante que o ícone não vaze para fora do card */
+    flex-direction: column;
+    gap: 10px; /* Espaço entre os elementos dentro do card, exceto o ícone */
+    border-radius: 20px;
+    background-color: color-mix(in srgb, var(--color-background) 95%, #000 5%);
+    padding: 45px;
+    padding-top: 60px; /* Aumenta o padding superior para o ícone */
+    border: 2px solid transparent;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.compromise-card:hover {
+    transform: scale(1.05);
+    border-color: var(--color-primary);
+    box-shadow: 0 10px 25px color-mix(in srgb, var(--color-text) 15%, transparent);
+}
+
+/* Animação para o ícone de aspas no hover do card */
+.compromise-card:hover .compromise-quote-icon {
+    transform: translateY(-5px) scale(1.05); 
+}
+
+/* Estilo para o ícone de aspas duplas */
+.compromise-quote-icon {
+    position: absolute;
+    top: 5px; /* Posição dentro do padding superior */
+    left: 36px;
+    font-size: 3rem; /* Tamanho do ícone */
+    color: var(--color-text-compromise);
+    z-index: 0;
+    transition: transform 0.3s ease; /* Mesma transição do benefit-icon */
+}
+
+.compromise-phase {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-text-compromise);
+    margin-top: 10px;
+}
+
+.compromise-item {
+    font-size: 1.25rem; /* 20px */
+    line-height: 1.6;
+    color: var(--color-text);
+    font-style: italic;
+    padding-bottom: 15px; /* Espaço entre o texto e a linha */
+    border-bottom: 1px solid color-mix(in srgb, var(--color-text) 15%, transparent); /* Linha separadora sutil */
+    margin-bottom: 10px; /* Espaço entre a linha e o parágrafo abaixo */
+}
+
+.compromise-description {
+    font-size: 0.9rem; /* 14.4px */
+    color: var(--color-text); /* Cor do texto que se adapta ao tema */
+}
+
+.portfolio-cta {
+    background-color: var(--color-primary);
+    color: var(--color-text-title);
+    padding: 15px 35px;
+    border-radius: 8px;
+    font-weight: 700;
+    transition: transform 0.2s ease, filter 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin-top: 40px;
+}
+
+.portfolio-cta:hover {
+    transform: scale(1.05);
+}
+
+/* Seção final de chamada para ação (CTA) */
+.service-offer {
+    padding: 80px 40px;
+    text-align: center;
+    color: var(--color-text-title); /* Cor de texto clara para contraste */
+    /* Gradiente do laranja primário para o dourado */
+    background: linear-gradient(90deg, var(--color-primary), #D69E2E);
+}
+
+.service-offer p {
+    line-height: 1.4;
+    max-width: 700px;
+    margin: 0 auto 10px auto; /* Centraliza e adiciona espaçamento */
+}
+
+.title-section-offer {
+    font-family: var(--font-family-body);
+    font-size: 36px;
+}
+
+.subtitle-section-offer {
+    font-size: 18px;
+}
+
+/* Estilo para o botão de CTA na seção de oferta de serviço */
+.solicitacao-cta {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 15px 35px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 16px;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    transition: transform 0.2s ease, filter 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.portfolio-preview-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 50px;
+    width: 100%;
+    max-width: 1200px;
+    flex-wrap: wrap; /* Permite que os cards quebrem em telas menores */
+}
+
+.portfolio-card {
+    flex: 1;
+    min-width: 300px;
+    max-width: 450px;
+    background-color: color-mix(in srgb, var(--color-background) 95%, #000 5%);
+    border-radius: 20px;
+    overflow: hidden; /* Garante que a imagem não ultrapasse as bordas arredondadas */
+    display: flex;
+    flex-direction: column;
+    border: 2px solid transparent;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.portfolio-card:hover {
+    transform: scale(1.05);
+    border-color: var(--color-primary);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-card:hover .title-benefits {
+    color: var(--color-primary);
+}
+
+.portfolio-card-image {
+    width: 100%;
+    height: 250px; /* Altura fixa para a imagem */
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+}
+
+.portfolio-card-content {
+    padding: 1.5rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Faz este container crescer para preencher o espaço */
+    text-align: left;
+}
+
+.portfolio-card-content .text-benefits {
+    flex-grow: 1; /* Empurra o botão para o final do card */
+    margin-bottom: 1.5rem;
+}
+
+.portfolio-list-item {
+    background-color: color-mix(in srgb, var(--color-background) 95%, #000 5%);
+    border-radius: 20px;
+    padding: 2.5rem; /* Ajuste no padding para compensar o espaço do gradiente */
+    border: 2px solid color-mix(in srgb, var(--color-text) 15%, transparent);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative; /* Necessário para posicionar o pseudo-elemento */
+    overflow: hidden; /* Garante que o gradiente não vaze dos cantos arredondados */
+    margin-top: 60px;
+    width: 70%;
+}
+
+.portfolio-list-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px; /* A altura da nossa "borda" de gradiente */
+    background: linear-gradient(90deg, var(--color-primary), #D69E2E);
+    border-top-left-radius: 20px; /* Arredonda o canto superior esquerdo */
+    border-top-right-radius: 20px; /* Arredonda o canto superior direito */
+}
+
+.portfolio-list-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-list-item h2 {
+    font-size: 1.75rem;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.portfolio-list-item:hover h2 {
+    color: var(--color-primary);
+}
+
+.portfolio-list-item p {
+    padding: 10px 0px;
+}
+
+.solicitacao-cta:hover {
+    transform: scale(1.05);
+}
+
+.portfolio-button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 16px;
+    background-color: var(--color-footer);
+    color: var(--color-text-title);
+    border-radius: 6px;
+    font-weight: 500;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.portfolio-button:hover {
+    transform: scale(1.05);
+}
+
+.projects-portfolio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 60px;
+}
+
+.main-footer{
+    padding: 60px 40px;
+    background-color: var(--color-footer);
+    color: var(--color-button-text);
+    border-top: 1px solid color-mix(in srgb, var(--color-button-text) 15%, transparent);
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Permite que as colunas quebrem em telas menores */
+    gap: 40px;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 250px; /* Largura mínima para cada coluna antes de quebrar */
+    font-weight: 300;
+}
+
+.footer-column .title-full {
+    font-size: 20px;
+
+}
+
+.footer-column .title-header {
+    color: var(--color-title-footer);
+}
+
+.copyright{
+    margin-top: 40px;
+    padding-top: 40px;
+    font-size: 14px;
+    font-weight: 300;
+    text-align: center;
+    border-top: 1px solid color-mix(in srgb, var(--color-button-text) 15%, transparent);
+}
+
+.footer-heading {
+    font-family: var(--font-family-body);
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    color: var(--color-text-title);
+}
+
+#footer-text {
+    margin-top: 15px;
+}
+
+.footer-links li,
+.footer-contact li {
+    margin-bottom: 10px;
+}
+
+.footer-links a,
+.footer-contact a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.footer-links a:hover,
+.footer-contact a:hover {
+    opacity: 1;
+}
+
+/* Estilos para a página Sobre */
+.about-page-content {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza os blocos na página */
+    flex-direction: column;
+    gap: 2rem; /* Espaço entre o bloco de texto e a imagem */
+    min-height: calc(100vh - 70px); /* Garante que o conteúdo ocupe a altura da tela */
+    padding: 2rem;
+    background-color: var(--color-background);
+}
+
+.about-intro-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem; /* Controla o espaço APENAS entre o texto e a imagem */
+    width: 100%;
+}
+
+.about-benefits {
+    flex-wrap: wrap; /* Permite que os cards quebrem a linha em telas menores */
+}
+
+.about-text-block {
+    max-width: 800px; /* Defina a largura máxima desejada para o bloco de texto */
+    width: 100%; /* Garante que ele seja responsivo em telas menores */
+    text-align: center;
+    margin-top: 25px;
+}
+
+.about-text-block h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.about-text-block p {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--color-text);
+}
+
+.about-image-container {
+    min-width: 300px;
+    max-width: 1100px;
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden; /* Garante que a imagem respeite o border-radius */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    position: relative; /* Essencial para posicionar o overlay */
+}
+
+.about-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Gradiente com as cores quentes do tema e um pouco de transparência */
+    background: linear-gradient(135deg, rgba(217, 95, 67, 0.25), rgba(214, 158, 46, 0.25));
+    z-index: 1; /* Garante que o overlay fique sobre a imagem */
+    border-radius: 20px; /* Garante que o overlay também tenha bordas arredondadas */
+}
+
+.about-image {
+    width: 100%;
+    height: auto; /* Mantém a proporção da imagem */
+    display: block; /* Remove espaço extra abaixo da imagem */
+}
+
+/* Classe para o estado inicial "escondido" da animação */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+/* Classe que será adicionada via JS para tornar a seção visível */
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.history-section{
+    margin: 40px 0 25px;
+    text-align: center;
+}
+
+.history-text-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* Espaçamento entre os parágrafos */
+    margin-top: 20px;
+}
+
+.history-paragraph {
+    text-align: justify;
+    margin: 0; /* Ajusta a margem herdada da outra classe */
+}
+
+.portfolio-section-title,
+.portfolio-section-subtitle {
+    text-align: center;
+}
+
+.portfolio-section-title {
+    margin-top: 40px;
+}
+
+.portfolio-button-live {
+    background-color: var(--color-button-portfolio);
+}
+
+.solicitacao-page-title {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.solicitacao-page-subtitle {
+    margin-bottom: 60px;
+}
+
+/* Estilos para o formulário de solicitação */
+.solicitacao-page-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: calc(100vh - 70px);
+}
+
+.solicitacao-form-container {
+    width: 100%;
+    max-width: 900px;
+    background-color: color-mix(in srgb, var(--color-background) 95%, #000 5%);
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 60px;
+    border: 1px solid color-mix(in srgb, var(--color-text) 15%, transparent);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.step-indicator-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.step-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    position: relative;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: color-mix(in srgb, var(--color-background) 80%, #000 20%);
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    border: 2px solid color-mix(in srgb, var(--color-text) 15%, transparent);
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    z-index: 2;
+}
+
+.step-title {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text);
+    opacity: 0.7;
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.step-connector {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    width: 100%;
+    height: 2px;
+    background-color: color-mix(in srgb, var(--color-text) 15%, transparent);
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.step-item.active .step-number {
+    background-color: var(--color-primary);
+    color: var(--color-text-title);
+    border-color: var(--color-primary);
+}
+
+.step-item.active .step-title {
+    color: var(--color-primary);
+    opacity: 1;
+}
+
+.step-item.completed .step-number {
+    background-color: var(--color-accent);
+    color: var(--color-text-title);
+    border-color: var(--color-accent);
+}
+
+.step-item.completed .step-title {
+    opacity: 1;
+}
+
+.step-item.completed .step-connector {
+    background-color: var(--color-accent);
+}
+
+.form-step {
+    min-height: 200px; /* Garante uma altura mínima para o conteúdo */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.form-fields-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    width: 100%;
+    max-width: 700px;
+    margin-top: 30px;
+}
+
+/* Modificador para quando houver apenas um campo grande */
+.form-fields-container.single-field {
+    grid-template-columns: 1fr;
+}
+
+/* Aumenta o espaçamento entre os grupos de campos apenas na última etapa */
+.form-fields-container.form-step-last {
+    gap: 40px;
+}
+
+.form-textarea {
+    min-height: 147px; /* Altura para preencher o espaço similar ao passo anterior */
+    resize: vertical;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text);
+    opacity: 0.9;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid color-mix(in srgb, var(--color-text) 20%, transparent);
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-size: 16px;
+    font-family: var(--font-family-body); /* Garante a consistência da fonte */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Estilização para a seta do select */
+select.form-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, var(--color-text) 50%), linear-gradient(135deg, var(--color-text) 50%, transparent 50%);
+    background-position: calc(100% - 20px) center, calc(100% - 15px) center;
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+}
+
+select.form-input:focus {
+    background-image: linear-gradient(45deg, transparent 50%, var(--color-primary) 50%), linear-gradient(135deg, var(--color-primary) 50%, transparent 50%);
+}
+
+/* Estiliza as opções dentro do select para combinar com o tema */
+select.form-input option {
+    background-color: var(--color-background);
+    color: var(--color-text);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 25%, transparent);
+}
+
+/* Estilos para estado de erro */
+.form-group.has-error .form-input {
+    border-color: #e53e3e; /* Vermelho para erro */
+}
+
+.form-group.has-error .form-input:focus {
+    box-shadow: 0 0 0 3px color-mix(in srgb, #e53e3e 25%, transparent);
+}
+
+.form-error-message {
+    color: #e53e3e;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.form-options-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.form-option-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--color-text);
+}
+
+/* Esconde o input padrão */
+.form-option-label input[type="radio"],
+.form-option-label input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+}
+
+.form-option-text {
+    position: relative;
+    padding-left: 30px; /* Espaço para o ícone customizado */
+}
+
+/* Cria o ícone customizado */
+.form-option-text::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid color-mix(in srgb, var(--color-text) 40%, transparent);
+    background-color: var(--color-background);
+    transition: all 0.2s ease;
+}
+
+/* Estilo para Radio Button */
+.form-option-label input[type="radio"] + .form-option-text::before {
+    border-radius: 50%;
+}
+
+/* Estilo para Checkbox */
+.form-option-label input[type="checkbox"] + .form-option-text::before {
+    border-radius: 4px;
+}
+
+/* Estilo quando selecionado */
+.form-option-label input:checked + .form-option-text::before {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+/* Adiciona o "check" ou "ponto" interno */
+.form-option-label input:checked + .form-option-text::after {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    width: 6px;
+    height: 12px;
+    border: solid var(--color-text-title);
+    border-width: 0 2px 2px 0;
+}
+
+.form-note {
+    margin-top: 20px;
+    font-size: 12px;
+    color: var(--color-text);
+    opacity: 0.7;
+}
+
+.form-step-title { font-size: 24px; color: var(--color-text); margin-bottom: 8px; }
+.form-step-subtitle { font-size: 16px; color: var(--color-text); opacity: 0.8; max-width: 500px; text-align: center; }
+
+.form-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    border-top: 1px solid color-mix(in srgb, var(--color-text) 15%, transparent);
+    padding-top: 30px;
+}
+
+.form-button { all: unset; cursor: pointer; background-color: var(--color-primary); color: var(--color-text-title); padding: 12px 28px; border-radius: 8px; font-weight: 600; transition: transform 0.2s ease, filter 0.2s ease; }
+.form-button:hover { transform: scale(1.05); }
+
+.form-button:disabled {
+    background-color: color-mix(in srgb, var(--color-accent) 50%, transparent);
+    cursor: not-allowed;
+    transform: none;
+}
+
+.form-button-secondary { background-color: var(--color-accent); }
+.form-navigation > :only-child { margin-left: auto; } /* Centraliza o botão quando só existe um */
+
+.submission-feedback-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+    min-height: calc(100vh - 200px);
+    max-width: 700px;
+}
+
+.submission-feedback-icon {
+    font-size: 80px;
+    color: var(--color-accent);
+    margin-bottom: 20px;
+}
+
+.submission-feedback-title {
+    font-family: var(--font-family-headings);
+    font-size: 32px;
+    color: var(--color-text);
+    margin-bottom: 15px;
+}
+
+.submission-feedback-text {
+    font-size: 18px;
+    line-height: 1.7;
+    opacity: 0.9;
+    margin-bottom: 30px;
+}
+
+.direct-contact-section {
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+    padding: 40px;
+    margin-bottom: 80px;
+    background-color: color-mix(in srgb, var(--color-background) 95%, #000 5%);
+    border: 1px solid color-mix(in srgb, var(--color-text) 15%, transparent);
+    border-radius: 20px;
+}
+
+.direct-contact-title {
+    font-family: var(--font-family-headings);
+    font-size: 22px;
+    color: var(--color-text);
+    margin-bottom: 15px;
+}
+
+.direct-contact-text {
+    max-width: 600px;
+    margin: 0 auto 25px auto;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.direct-contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.contact-link {
+    font-weight: 600;
+    color: var(--color-primary);
+    transition: filter 0.2s ease;
+}
+
+.contact-link:hover {
+    filter: brightness(1.1);
+}
+
+/* Media Query para Tablets e Telas Menores */
+@media (max-width: 1024px) {
+    .main-header {
+        padding: 15px 20px;
+    }
+
+    .nav-link {
+        margin-right: 15px;
+        font-size: 15px;
+    }
+
+    .cta-link {
+        padding: 8px 16px;
+        font-size: 15px;
+    }
+
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+
+    .benefits-container,
+    .compromise-banner,
+    .portfolio-preview-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .benefit-item,
+    .compromise-card,
+    .portfolio-card {
+        max-width: 500px; /* Aumenta a largura máxima nos tablets */
+        width: 100%;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    /* Limita a largura da primeira coluna do rodapé para melhor legibilidade */
+    .footer-column:first-child {
+        max-width: 450px;
+        margin: 0 auto; /* Centraliza a coluna após definir a largura máxima */
+    }
+
+    .footer-links a, .footer-contact a {
+        justify-content: center;
+    }
+
+    .form-fields-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Media Query para Celulares */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px; /* Reduz o tamanho da fonte base */
+    }
+
+    .main-header {
+        flex-wrap: wrap; /* Permite que os itens quebrem a linha */
+        justify-content: space-between;
+        padding: 15px;
+        gap: 20px;
+    }
+
+    .main-nav {
+        width: 100%; /* Ocupa toda a largura para alinhar os grupos */
+        justify-content: space-between;
+    }
+
+    .nav-actions-group { gap: 15px; }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .hero-cta-primary, .hero-cta-secondary {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .next-section {
+        padding: 60px 20px;
+    }
+
+    .title-section-about {
+        font-size: 1.8rem;
+    }
+
+    .subtitle-section-about {
+        font-size: 1rem;
+    }
+
+    .portfolio-list-item {
+        width: 95%;
+        padding: 1.5rem;
+    }
+
+    .solicitacao-form-container {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-page-content {
+        padding: 1rem;
+    }
+}
