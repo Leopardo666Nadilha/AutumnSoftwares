@@ -1,5 +1,6 @@
 import '../styles/globals.css';
 import Layout from '../components/Layout';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { ThemeProvider } from '../context/ThemeContext';
 import { Inter, Merriweather } from 'next/font/google';
 
@@ -32,6 +33,7 @@ function MyApp({ Component, pageProps }) {
             <ThemeProvider>
                 <Layout>
                     <Component {...pageProps} />
+                    <SpeedInsights />
                 </Layout>
             </ThemeProvider>
         </>
