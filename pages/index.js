@@ -56,6 +56,7 @@ export default function HomePage() {
                     objectFit="cover"
                     quality={75}
                     placeholder="blur"
+                    priority
                     style={{ zIndex: 0 }}
                 />
                 <div className="hero-overlay"></div>
