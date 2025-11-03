@@ -1,19 +1,10 @@
-### 1\. GitHub Short Description (Descrição Curta)
-
-```
-Institutional website for Autumn Softwares. Built with Next.js, CSS Modules, and responsive design, focusing on high performance and UX.
-```
-
------
-
-### 2\. Conteúdo do `README.md` (Em Inglês)
-
-````md
 # Autumn Softwares - Institutional Website
 
-![Autumn Softwares](httpsa://path/to/your/hero-image.png) This is the official repository for the institutional website of Autumn Softwares, a custom software development company. The project was built with a focus on performance (Next.js SSG), responsive design (desktop-first), and a mature brand identity based on autumn tones.
+This is the official repository for the institutional website of Autumn Softwares, a custom software development company. The project was built with a focus on performance (Next.js SSG), responsive design (desktop-first), and a mature brand identity based on autumn tones.
 
-The site is hosted on Vercel and can be accessed at: **www.autumnsoftwares.com** ## ✨ Features
+The site is hosted on Vercel and can be accessed at: **www.autumnsoftwares.com**
+
+## ✨ Features
 
 * **High Performance:** Built with Next.js (Static Site Generation - SSG) for instant loading and optimized SEO.
 * **Responsive Design:** Desktop-first approach using `max-width` media queries for full adaptation to tablets and mobile devices.
@@ -25,8 +16,9 @@ The site is hosted on Vercel and can be accessed at: **www.autumnsoftwares.com**
 ## 🛠️ Tech Stack
 
 * **Framework:** [Next.js](https://nextjs.org/) (using Pages Router)
-* **Language:** [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) (with JSX) * **Styling:** [CSS Modules](https://github.com/css-modules/css-modules) & Plain CSS
-* **Icons:** [React Icons](https://react-icons.github.io/react-icons/) (or Lucide)
+* **Language:** [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) (with JSX)
+* **Styling:** [CSS Modules](https://github.com/css-modules/css-modules) & Plain CSS
+* **Icons:** [React Icons](https://react-icons.github.io/react-icons/)
 * **Deployment:** [Vercel](https://vercel.com/)
 
 ## 🎨 Color Palette (Brand Identity)
@@ -67,8 +59,6 @@ Follow the steps below to run the project on your machine.
 
 4.  **Open in browser:**
     Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
-
 ## 📄 License
 
 This project is the property of Autumn Softwares. The source code for the conceptual projects in the portfolio (PontoCerto SaaS, Ordo Finances) is available under the MIT License.
-````
