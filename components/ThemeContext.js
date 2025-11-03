@@ -25,9 +25,6 @@ export function ThemeProvider({ children }) {
     });
   };
 
-  if (theme === null) {
-    return null;
-  }
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
