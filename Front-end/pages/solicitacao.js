@@ -109,18 +109,28 @@ export default function SolicitacaoPage() {
     }, [submissionStatus]);
 
     // Placeholder para a função de envio
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        // Previne o recarregamento da página ao submeter o formulário
+        e.preventDefault();
+
         if (!isStepValid()) return;
 
         setSubmissionStatus('loading');
 
-        // Simulação de chamada de API
         try {
-            // Envia os dados para sua API aqui. No momento apenas simulando envio.
-            // ex: await fetch('/api/solicitacoes', { method: 'POST', body: JSON.stringify(formData) });
-            await new Promise(resolve => setTimeout(resolve, 2000)); // Simula um atraso de 2 segundos
+            const response = await fetch('http://localhost:8080/solicitacao', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
 
-            setSubmissionStatus('success');
+            if (response.ok) {
+                setSubmissionStatus('success');
+            } else {
+                setSubmissionStatus('error');
+            }
         } catch (error) {
             console.error("Falha no envio:", error);
             setSubmissionStatus('error');
@@ -321,7 +331,7 @@ export default function SolicitacaoPage() {
                 </div>
 
                 {/* Conteúdo da Etapa */}
-                <form className="solicitacao-form">
+                <form className="solicitacao-form" onSubmit={handleSubmit}>
                     {renderStepContent()}
                 </form>
 
