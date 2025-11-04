@@ -3,7 +3,7 @@ node_modules/
 /.pnpm
 
 # build output
-/.next/
+Front-end/.next/
 /out/
 
 # static exports
