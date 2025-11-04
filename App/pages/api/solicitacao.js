@@ -1,15 +1,63 @@
 import nodemailer from 'nodemailer';
+import { LRUCache } from 'lru-cache';
+
+// --- Início da Implementação do Rate Limiter ---
+
+const rateLimit = (options) => {
+  const tokenCache = new LRUCache({
+    max: options.uniqueTokenPerInterval || 500,
+    ttl: options.interval || 60000,
+  });
+
+  return {
+    check: (res, limit, token) =>
+      new Promise((resolve, reject) => {
+        const tokenCount = tokenCache.get(token) || [0];
+        if (tokenCount[0] === 0) {
+          tokenCache.set(token, tokenCount);
+        }
+        tokenCount[0] += 1;
+
+        const currentUsage = tokenCount[0];
+        const isRateLimited = currentUsage >= limit;
+        res.setHeader('X-RateLimit-Limit', limit);
+        res.setHeader('X-RateLimit-Remaining', isRateLimited ? 0 : limit - currentUsage);
+
+        return isRateLimited ? reject() : resolve();
+      }),
+  };
+};
+
+const limiter = rateLimit({
+  interval: 60 * 1000, // 1 minuto
+  uniqueTokenPerInterval: 500, // Máximo de 500 IPs únicos por minuto
+});
+
+// --- Fim da Implementação do Rate Limiter ---
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method Not Allowed' });
   }
 
-  const { fullName, email, company, phone, challenge, solutionType, integrationNeeded, investmentRange, urgency, services } = req.body;
+  try {
+    // 1. Proteção contra Abuso (Rate Limiting)
+    // Permite no máximo 5 requisições por IP a cada 1 minuto.
+    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+    await limiter.check(res, 5, ip);
+  } catch {
+    return res.status(429).json({ message: 'Muitas requisições. Tente novamente em um minuto.' });
+  }
 
-  // Validação simples no servidor
-  if (!fullName || !email || !challenge) {
-    return res.status(400).json({ message: 'Campos obrigatórios estão faltando.' });
+  // 2. Validação e Sanitização dos Dados
+  const { fullName, email, company, phone, challenge, solutionType, integrationNeeded, investmentRange, urgency, services } = req.body;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!fullName || !email || !challenge || !solutionType || !investmentRange || !urgency || !services) {
+    return res.status(400).json({ message: 'Todos os campos obrigatórios devem ser preenchidos.' });
+  }
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({ message: 'O formato do e-mail é inválido.' });
   }
 
   // Configuração do Nodemailer
@@ -39,24 +87,27 @@ export default async function handler(req, res) {
     .join(', ');
 
   // Corpo do e-mail para a notificação interna
+  // Usamos uma função simples para sanitizar e evitar XSS
+  const sanitize = (text) => text ? text.replace(/</g, '&lt;').replace(/>/g, '&gt;') : '';
+
   const mailToCompany = {
     from: `"${fullName}" <${email}>`,
     to: process.env.EMAIL_TO,
     replyTo: email,
-    subject: `Nova Solicitação de Projeto: ${company}`,
+    subject: `Nova Solicitação de Projeto: ${sanitize(company) || 'Empresa não informada'}`,
     html: `
       <h1>Nova Solicitação de Projeto</h1>
-      <p><strong>Nome:</strong> ${fullName}</p>
-      <p><strong>Empresa:</strong> ${company}</p>
+      <p><strong>Nome:</strong> ${sanitize(fullName)}</p>
+      <p><strong>Empresa:</strong> ${sanitize(company) || 'Não informado'}</p>
       <p><strong>E-mail:</strong> ${email}</p>
-      <p><strong>Telefone:</strong> ${phone}</p>
+      <p><strong>Telefone:</strong> ${sanitize(phone) || 'Não informado'}</p>
       <hr>
       <h2>Detalhes do Projeto</h2>
-      <p><strong>Desafio/Ideia:</strong><br>${challenge.replace(/\n/g, '<br>')}</p>
-      <p><strong>Tipo de Solução:</strong> ${solutionType}</p>
-      <p><strong>Necessita Integração:</strong> ${integrationNeeded || 'Não informado'}</p>
-      <p><strong>Faixa de Investimento:</strong> ${investmentRange}</p>
-      <p><strong>Urgência:</strong> ${urgency}</p>
+      <p><strong>Desafio/Ideia:</strong><br>${sanitize(challenge).replace(/\n/g, '<br>')}</p>
+      <p><strong>Tipo de Solução:</strong> ${sanitize(solutionType)}</p>
+      <p><strong>Necessita Integração:</strong> ${sanitize(integrationNeeded) || 'Não informado'}</p>
+      <p><strong>Faixa de Investimento:</strong> ${sanitize(investmentRange)}</p>
+      <p><strong>Urgência:</strong> ${sanitize(urgency)}</p>
       <p><strong>Serviços de Interesse:</strong> ${selectedServices || 'Nenhum especificado'}</p>
     `,
   };
@@ -67,7 +118,7 @@ export default async function handler(req, res) {
     to: email,
     subject: 'Recebemos sua solicitação de projeto!',
     html: `
-      <h1>Olá, ${fullName}!</h1>
+      <h1>Olá, ${sanitize(fullName)}!</h1>
       <p>Confirmamos o recebimento da sua solicitação de projeto. Agradecemos por compartilhar sua ideia conosco!</p>
       <p>Nossa equipe analisará as informações que você enviou e entraremos em contato o mais breve possível para discutir os próximos passos.</p>
       <p>Atenciosamente,<br>Equipe Autumn Softwares</p>
