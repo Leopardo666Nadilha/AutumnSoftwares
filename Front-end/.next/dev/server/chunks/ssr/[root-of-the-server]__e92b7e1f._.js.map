@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 10, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/leo67/Downloads/Projetos/Projetos%20pessoais/Autumn%20Softwares/my-app/pages/portfolio.js"],"sourcesContent":["function portfolioPage() {\r\n    return <div>Página portfolio</div>\r\n}\r\nexport default portfolioPage;"],"names":[],"mappings":";;;;;;AAAA,SAAS;IACL,qBAAO,qKAAC;kBAAI;;;;;;AAChB;uCACe","debugId":null}}]
+}

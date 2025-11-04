@@ -1,0 +1,12 @@
+[00:00:00.917] Server  LOG      ✓ Ready in 578ms
+[00:00:07.693] Server  WARN    Image with src "/_next/static/media/main-bg.d44f504e.jpg" has legacy prop "layout". Did you forget to run the codemod?
+Read more: https://nextjs.org/docs/messages/next-image-upgrade-to-13
+[00:00:07.693] Server  WARN    Image with src "/_next/static/media/main-bg.d44f504e.jpg" has legacy prop "objectFit". Did you forget to run the codemod?
+Read more: https://nextjs.org/docs/messages/next-image-upgrade-to-13
+[00:00:08.358] Browser WARN    Image with src "/_next/static/media/main-bg.d44f504e.jpg" has legacy prop "layout". Did you forget to run the codemod?
+Read more: https://nextjs.org/docs/messages/next-image-upgrade-to-13
+[00:00:08.358] Browser WARN    Image with src "/_next/static/media/main-bg.d44f504e.jpg" has legacy prop "objectFit". Did you forget to run the codemod?
+Read more: https://nextjs.org/docs/messages/next-image-upgrade-to-13
+[00:00:08.678] Browser LOG     %c[Vercel Speed Insights]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:00:11.634] Browser LOG     %c[Vercel Speed Insights]%c [vitals] color: rgb(120, 120, 120) color: inherit {"metrics":[{"href":"http://localhost:3000/","id":"v3-1762207907808-1932087078052","route":"/","type":"FCP","value":3032},{"href":"http://localhost:3000/","id":"v3-1762207907808-9453740131990","route":"/","type":"TTFB","value":2557},{"attribution":{"eventTarget":"#__next>main>section.hero-section>img"},"href":"http://localhost:3000/","id":"v3-1762207907808-5432189111498","route":"/","type":"LCP","value":3032},{"attribution":{"eventTarget":"","eventType":"pointerdown"},"href":"http://localhost:3000/","id":"v3-1762207907808-5334169153322","route":"/","type":"FID","value":0.3}],"scriptVersion":"0.1.3","sdkName":"@vercel/speed-insights/next","sdkVersion":"1.2.0","speed":"4g"}
+[00:00:17.988] Browser LOG     %c[Vercel Speed Insights]%c [vitals] color: rgb(120, 120, 120) color: inherit {"metrics":[{"attribution":{"eventTarget":"","eventType":"pointerdown"},"href":"http://localhost:3000/","id":"v3-1762207907808-1443259079188","route":"/","type":"INP","value":8},{"attribution":{},"href":"http://localhost:3000/","id":"v3-1762207907809-4519828126088","route":"/","type":"CLS","value":0}],"scriptVersion":"0.1.3","sdkName":"@vercel/speed-insights/next","sdkVersion":"1.2.0","speed":"4g"}

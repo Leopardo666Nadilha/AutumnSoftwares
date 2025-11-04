@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/leo67/Downloads/Projetos/Projetos%20pessoais/Autumn%20Softwares/my-app/pages/sobre.js"],"sourcesContent":["function AboutPage() {\r\n    return <div>Página sobre</div>\r\n}\r\nexport default AboutPage;"],"names":[],"mappings":";;;;;;AAAA,SAAS;IACL,qBAAO,qKAAC;kBAAI;;;;;;AAChB;uCACe","debugId":null}}]
+}
