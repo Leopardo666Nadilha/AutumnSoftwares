@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 10, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/leo67/Downloads/Projetos/Projetos%20pessoais/Autumn%20Softwares/my-app/pages/index.js"],"sourcesContent":["function homePage() {\r\n    return <div>Welcome to Next.js!</div>\r\n}\r\nexport default homePage;"],"names":[],"mappings":";;;;;;AAAA,SAAS;IACL,qBAAO,qKAAC;kBAAI;;;;;;AAChB;uCACe","debugId":null}}]
-}

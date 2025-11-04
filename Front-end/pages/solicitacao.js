@@ -118,7 +118,7 @@ export default function SolicitacaoPage() {
         setSubmissionStatus('loading');
 
         try {
-            const response = await fetch('http://localhost:8080/solicitacao', {
+            const response = await fetch('/api/solicitacao', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

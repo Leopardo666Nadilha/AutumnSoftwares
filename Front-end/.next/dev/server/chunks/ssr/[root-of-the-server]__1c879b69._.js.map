@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 10, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/leo67/Downloads/Projetos/Projetos%20pessoais/Autumn%20Softwares/my-app/pages/_app.js"],"sourcesContent":["import '../styles/globals.css';\r\nimport Layout from '../components/Layout';\r\n\r\nfunction MyApp({ Component, pageProps }) {\r\n    return (\r\n        <Layout>\r\n            <Component {...pageProps} />\r\n        </Layout>\r\n    );\r\n}\r\n\r\nexport default MyApp;"],"names":[],"mappings":";;;;;;;;;;;;;AAGA,SAAS,MAAM,EAAE,SAAS,EAAE,SAAS,EAAE;IACnC,qBACI,qKAAC;kBACG,cAAA,qKAAC;YAAW,GAAG,SAAS;;;;;;;;;;;AAGpC;uCAEe","debugId":null}}]
-}
