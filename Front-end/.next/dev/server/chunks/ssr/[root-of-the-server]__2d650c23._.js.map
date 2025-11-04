@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/leo67/Downloads/Projetos/Projetos%20pessoais/Autumn%20Softwares/my-app/pages/index.js"],"sourcesContent":["export default function HomePage() {\r\n    return (\r\n        <>\r\n        {/* Esta é a seção que terá a imagem de fundo */}\r\n        <section className=\"hero-section\">\r\n            <div className=\"hero-content\">\r\n            <h1>Suas ideias, <strong className='destaque_title'>amadurecidas</strong> em software.</h1>\r\n            <p>Transformando ideias em soluções digitais robustas e personalizadas.</p>\r\n            </div>\r\n        </section>\r\n        </>\r\n    );\r\n}"],"names":[],"mappings":";;;;;;AAAe,SAAS;IACpB,qBACI;kBAEA,cAAA,qKAAC;YAAQ,WAAU;sBACf,cAAA,qKAAC;gBAAI,WAAU;;kCACf,qKAAC;;4BAAG;0CAAa,qKAAC;gCAAO,WAAU;0CAAiB;;;;;;4BAAqB;;;;;;;kCACzE,qKAAC;kCAAE;;;;;;;;;;;;;;;;;;AAKf","debugId":null}}]
-}
