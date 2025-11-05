@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 import { LRUCache } from 'lru-cache';
+import path from 'path';
 
 // --- Início da Implementação do Rate Limiter ---
 
@@ -118,11 +119,54 @@ export default async function handler(req, res) {
     to: email,
     subject: 'Recebemos sua solicitação de projeto!',
     html: `
-      <h1>Olá, ${sanitize(fullName)}!</h1>
-      <p>Confirmamos o recebimento da sua solicitação de projeto. Agradecemos por compartilhar sua ideia conosco!</p>
-      <p>Nossa equipe analisará as informações que você enviou e entraremos em contato o mais breve possível para discutir os próximos passos.</p>
-      <p>Atenciosamente,<br>Equipe Autumn Softwares</p>
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+          /* Estilos para telas maiores (desktop) */
+          @media screen and (min-width: 601px) {
+            .email-container {
+              width: 100% !important;
+              background-color: #000000d6 !important; /* Cor do banner no desktop */
+            }
+            .content-wrapper {
+              max-width: 600px !important;
+              background-color: #ffffff !important; /* Fundo branco para o texto no desktop */
+              border-radius: 8px;
+              margin-top: 40px !important;
+              margin-bottom: 40px !important;
+            }
+          }
+        </style>
+      </head>
+      <body style="margin: 0; padding: 0; font-family: sans-serif; background-color: #f5f5f5;">
+        <!-- Contêiner principal que se adapta -->
+        <div class="email-container" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px;">
+          <!-- Wrapper de conteúdo para desktop -->
+          <div class="content-wrapper" style="margin: 0 auto;">
+            <div style="padding: 20px;">
+              <h1>Olá, ${sanitize(fullName)}!</h1>
+              <p>Confirmamos o recebimento da sua solicitação de projeto. Agradecemos por compartilhar sua ideia conosco!</p>
+              <p>Nossa equipe analisará as informações que você enviou e entraremos em contato o mais breve possível para discutir os próximos passos.</p>
+              <p>Atenciosamente,<br>Equipe Autumn Softwares</p>
+            </div>
+            <hr style="border: none; border-top: 1px solid #dddddd; margin: 0 20px;">
+            <div style="text-align: center; padding: 30px 20px;">
+              <img src="cid:logo" alt="Autumn Softwares Logo" style="width: 100%; max-width: 300px; height: auto;" />
+            </div>
+          </div>
+        </div>
+      </body>
+      </html>
     `,
+    attachments: [
+      {
+        filename: 'logo-email.png',
+        path: path.join(process.cwd(), 'public', 'logo-email.png'),
+        cid: 'logo' // O mesmo 'cid' usado na tag <img>
+      }
+    ]
   };
 
   try {
