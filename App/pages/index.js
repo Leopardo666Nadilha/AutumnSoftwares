@@ -52,12 +52,11 @@ export default function HomePage() {
                 <Image
                     src={mainBg}
                     alt="Folhas de outono em primeiro plano com um prédio moderno ao fundo"
-                    layout="fill"
-                    objectFit="cover"
+                    fill
                     quality={75}
                     placeholder="blur"
                     priority
-                    style={{ zIndex: 0 }}
+                    style={{ zIndex: 0, objectFit: 'cover' }}
                 />
                 <div className="hero-overlay"></div>
                 <div className="hero-content" style={{ zIndex: 1 }}>
