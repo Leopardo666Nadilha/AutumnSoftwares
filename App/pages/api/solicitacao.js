@@ -51,7 +51,7 @@ export default async function handler(req, res) {
   }
 
   // 2. Validação do reCAPTCHA (Apenas em produção)
-  if (process.env.NODE_ENV === 'production') {
+  if (process.env.RECAPTCHA_SECRET_KEY) {
     const { recaptchaToken } = req.body;
     try {
       const recaptchaResponse = await fetch('https://www.google.com/recaptcha/api/siteverify', {
