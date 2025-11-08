@@ -160,7 +160,7 @@ function SolicitacaoForm() {
         setSubmissionStatus('loading');
 
         try {
-            const response = await fetch('/api/solicitacao', {
+            const response = await fetch('/api/enviarProjeto', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
