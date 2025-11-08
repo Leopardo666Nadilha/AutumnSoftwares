@@ -53,6 +53,9 @@ export default async function handler(req, res) {
   // 2. Validação do reCAPTCHA (Apenas em produção)
   if (process.env.RECAPTCHA_SECRET_KEY) {
     const { recaptchaToken } = req.body;
+    if (!recaptchaToken) {
+      return res.status(400).json({ message: 'Token do reCAPTCHA não fornecido.' });
+    }
     try {
       const recaptchaResponse = await fetch('https://www.google.com/recaptcha/api/siteverify', {
         method: 'POST',
