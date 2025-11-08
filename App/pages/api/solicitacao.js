@@ -50,7 +50,30 @@ export default async function handler(req, res) {
     return res.status(429).json({ message: 'Muitas requisições. Tente novamente em um minuto.' });
   }
 
-  // 2. Validação e Sanitização dos Dados
+  // 2. Validação do reCAPTCHA
+  const { recaptchaToken } = req.body;
+  try {
+    const recaptchaResponse = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
+    });
+
+    const recaptchaData = await recaptchaResponse.json();
+
+    // Verificamos se a requisição foi bem-sucedida e se o score é aceitável (reCAPTCHA v3)
+    if (!recaptchaData.success || recaptchaData.score < 0.5) {
+      console.warn('Falha na verificação do reCAPTCHA', recaptchaData['error-codes']);
+      return res.status(403).json({ message: 'Falha na verificação. Você parece ser um robô.' });
+    }
+  } catch (error) {
+    console.error('Erro ao verificar reCAPTCHA:', error);
+    return res.status(500).json({ message: 'Erro interno ao verificar o reCAPTCHA.' });
+  }
+
+  // 3. Validação e Sanitização dos Dados
   const { fullName, email, company, phone, challenge, solutionType, integrationNeeded, investmentRange, urgency, services } = req.body;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 

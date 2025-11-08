@@ -1,10 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import { PiCheckCircle } from 'react-icons/pi';
 import Link from 'next/link';
+import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
+
 const steps = ["Seus Dados", "O Desafio", "Detalhes Técnicos", "Escopo & Prazos"];
 
-export default function SolicitacaoPage() {
+function SolicitacaoForm() {
     const [currentStep, setCurrentStep] = useState(1);
+    const { executeRecaptcha } = useGoogleReCaptcha();
+
     const [formData, setFormData] = useState({
         fullName: '',
         company: '',
@@ -115,6 +119,13 @@ export default function SolicitacaoPage() {
 
         if (!isStepValid()) return;
 
+        if (!executeRecaptcha) {
+            console.error("reCAPTCHA não está pronto.");
+            setSubmissionStatus('error');
+            return;
+        }
+
+        const recaptchaToken = await executeRecaptcha('solicitacaoForm');
         setSubmissionStatus('loading');
 
         try {
@@ -123,7 +134,10 @@ export default function SolicitacaoPage() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify({
+                    ...formData,
+                    recaptchaToken, // Envia o token para o backend
+                }),
             });
 
             if (response.ok) {
@@ -371,5 +385,15 @@ export default function SolicitacaoPage() {
                 </div>
             </div>
         </section>
+    );
+}
+
+export default function SolicitacaoPage() {
+    const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+
+    return (
+        <GoogleReCaptchaProvider reCaptchaKey={siteKey}>
+            <SolicitacaoForm />
+        </GoogleReCaptchaProvider>
     );
 }
