@@ -1,5 +1,6 @@
 import '../styles/globals.css';
 import Layout from '../components/Layout';
+import ThemeScript from '../components/ThemeScript';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"
 import { ThemeProvider } from '../context/ThemeContext';
@@ -24,6 +25,7 @@ const merriweather = Merriweather({
 function MyApp({ Component, pageProps }) {
     return (
         <>
+            <ThemeScript />
             <style jsx global>{`
                 :root {
                     --font-family-body: ${inter.style.fontFamily};
