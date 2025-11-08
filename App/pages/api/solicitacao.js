@@ -50,27 +50,29 @@ export default async function handler(req, res) {
     return res.status(429).json({ message: 'Muitas requisições. Tente novamente em um minuto.' });
   }
 
-  // 2. Validação do reCAPTCHA
-  const { recaptchaToken } = req.body;
-  try {
-    const recaptchaResponse = await fetch('https://www.google.com/recaptcha/api/siteverify', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
-    });
-
-    const recaptchaData = await recaptchaResponse.json();
-
-    // Verificamos se a requisição foi bem-sucedida e se o score é aceitável (reCAPTCHA v3)
-    if (!recaptchaData.success || recaptchaData.score < 0.5) {
-      console.warn('Falha na verificação do reCAPTCHA', recaptchaData['error-codes']);
-      return res.status(403).json({ message: 'Falha na verificação. Você parece ser um robô.' });
+  // 2. Validação do reCAPTCHA (Apenas em produção)
+  if (process.env.NODE_ENV === 'production') {
+    const { recaptchaToken } = req.body;
+    try {
+      const recaptchaResponse = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
+      });
+  
+      const recaptchaData = await recaptchaResponse.json();
+  
+      // Verificamos se a requisição foi bem-sucedida e se o score é aceitável (reCAPTCHA v3)
+      if (!recaptchaData.success || recaptchaData.score < 0.5) {
+        console.warn('Falha na verificação do reCAPTCHA', recaptchaData['error-codes']);
+        return res.status(403).json({ message: 'Falha na verificação. Você parece ser um robô.' });
+      }
+    } catch (error) {
+      console.error('Erro ao verificar reCAPTCHA:', error);
+      return res.status(500).json({ message: 'Erro interno ao verificar o reCAPTCHA.' });
     }
-  } catch (error) {
-    console.error('Erro ao verificar reCAPTCHA:', error);
-    return res.status(500).json({ message: 'Erro interno ao verificar o reCAPTCHA.' });
   }
 
   // 3. Validação e Sanitização dos Dados
@@ -88,7 +90,7 @@ export default async function handler(req, res) {
   const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_SERVER_HOST,
     port: process.env.EMAIL_SERVER_PORT,
-    secure: true, // true para porta 465, false para outras
+    secure: parseInt(process.env.EMAIL_SERVER_PORT, 10) === 465, // Use 'secure: true' apenas para a porta 465
     auth: {
       user: process.env.EMAIL_SERVER_USER,
       pass: process.env.EMAIL_SERVER_PASSWORD,
@@ -104,7 +106,7 @@ export default async function handler(req, res) {
         case 'webapp': return 'Desenvolvimento de Aplicação Web (SaaS, Dashboard)';
         case 'mobile': return 'Desenvolvimento de Aplicativo Mobile (iOS/Android)';
         case 'automation': return 'Automação de Processos / Integrações';
-        case 'consulting': return 'Consultoria para definição de escopo';
+        case 'consulting': return 'Consultoria para definição de escopo'; // Adicionado para consistência
         default: return serviceName;
       }
     })
@@ -200,6 +202,7 @@ export default async function handler(req, res) {
     res.status(200).json({ message: 'Solicitação enviada com sucesso!' });
   } catch (error) {
     console.error('Falha ao enviar e-mail:', error);
+    // Revertido para uma mensagem genérica em produção.
     res.status(500).json({ message: 'Ocorreu um erro ao enviar sua solicitação. Tente novamente mais tarde.' });
   }
 }

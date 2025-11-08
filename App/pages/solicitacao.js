@@ -1,9 +1,40 @@
+import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { PiCheckCircle } from 'react-icons/pi';
 import Link from 'next/link';
 import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 const steps = ["Seus Dados", "O Desafio", "Detalhes Técnicos", "Escopo & Prazos"];
+
+// --- Componente Reformulado para a Etapa 1 ---
+function Step1ContactInfo({ formData, handleChange, handleEmailBlur, emailError }) {
+    return (
+        <div className="form-step">
+            <h2 className="form-step-title">Informações para Contato</h2>
+            <p className="form-step-subtitle">Precisamos saber quem você é e como podemos te encontrar.</p>
+            <div className="form-fields-container">
+                <div className="form-group">
+                    <label htmlFor="fullName" className="form-label">Nome completo *</label>
+                    <input type="text" id="fullName" name="fullName" className="form-input" placeholder="Seu nome" value={formData.fullName} onChange={handleChange} required />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="company" className="form-label">Empresa *</label>
+                    <input type="text" id="company" name="company" className="form-input" placeholder="Nome da sua empresa" value={formData.company} onChange={handleChange} required />
+                </div>
+                <div className={`form-group ${emailError ? 'has-error' : ''}`}>
+                    <label htmlFor="email" className="form-label">E-mail *</label>
+                    <input type="email" id="email" name="email" className="form-input" placeholder="seuemail@aqui.com" value={formData.email} onChange={handleChange} onBlur={handleEmailBlur} required />
+                    {emailError && <p className="form-error-message">{emailError}</p>}
+                </div>
+                <div className="form-group">
+                    <label htmlFor="phone" className="form-label">Telefone *</label>
+                    <input type="tel" id="phone" name="phone" className="form-input" placeholder="(00) 00000-0000" value={formData.phone} onChange={handleChange} required maxLength="15" />
+                </div>
+            </div>
+            <p className="form-note">* Campos obrigatórios</p>
+        </div>
+    );
+}
 
 function SolicitacaoForm() {
     const [currentStep, setCurrentStep] = useState(1);
@@ -29,6 +60,7 @@ function SolicitacaoForm() {
     });
     const [submissionStatus, setSubmissionStatus] = useState('idle'); // idle, loading, success, error
     const [emailError, setEmailError] = useState('');
+    const [apiError, setApiError] = useState(''); // Novo estado para erros da API
     const pageTopRef = useRef(null); // Ref para o topo da página
 
     const nextStep = () => {
@@ -46,6 +78,7 @@ function SolicitacaoForm() {
     const handleChange = (e) => {
         const { name, value } = e.target;
 
+        if (apiError) setApiError(''); // Limpa o erro da API ao digitar
         if (name === 'phone') {
             const formattedPhone = formatPhoneNumber(value);
             setFormData(prevState => ({ ...prevState, [name]: formattedPhone }));
@@ -117,8 +150,6 @@ function SolicitacaoForm() {
         // Previne o recarregamento da página ao submeter o formulário
         e.preventDefault();
 
-        if (!isStepValid()) return;
-
         if (!executeRecaptcha) {
             console.error("reCAPTCHA não está pronto.");
             setSubmissionStatus('error');
@@ -143,10 +174,20 @@ function SolicitacaoForm() {
             if (response.ok) {
                 setSubmissionStatus('success');
             } else {
+                // Lê a mensagem de erro detalhada que a API agora nos envia.
+                const errorData = await response.json();
+                const userFriendlyMessage = errorData.message.includes('robô') 
+                    ? 'A verificação falhou. Por favor, recarregue a página e tente novamente.'
+                    : 'Ocorreu um erro no servidor. Por favor, tente mais tarde.';
+                setApiError(userFriendlyMessage); // Define a mensagem de erro no estado
+                console.error("Erro retornado pela API:", errorData.message);
                 setSubmissionStatus('error');
             }
         } catch (error) {
+            // Este erro ocorre se a API estiver totalmente offline.
+            setApiError('Erro de conexão. Verifique sua internet e tente novamente.');
             console.error("Falha no envio:", error);
+            // Aqui você poderia exibir uma mensagem genérica para o usuário
             setSubmissionStatus('error');
         }
     };
@@ -163,9 +204,12 @@ function SolicitacaoForm() {
                 // Apenas solutionType é obrigatório
                 return formData.solutionType !== '';
             case 4:
-                // Para os checkboxes, verificamos se pelo menos um está marcado
-                const oneServiceSelected = Object.values(formData.services).some(v => v === true);
-                return formData.investmentRange !== '' && formData.urgency !== '' && oneServiceSelected;
+                // A validação é válida se:
+                // 1. O usuário preencheu investimento e urgência.
+                // 2. E (pelo menos um serviço foi selecionado OU a opção de consultoria foi marcada).
+                const otherServices = ['website', 'webapp', 'mobile', 'automation'];
+                const anyOtherServiceSelected = otherServices.some(s => formData.services[s]);
+                return formData.investmentRange !== '' && formData.urgency !== '' && (anyOtherServiceSelected || formData.services.consulting);
             default:
                 return false;
         }
@@ -180,32 +224,12 @@ function SolicitacaoForm() {
     const renderStepContent = () => {
         switch (currentStep) {
             case 1:
-                return (
-                    <div className="form-step">
-                        <h2 className="form-step-title">Informações para Contato</h2>
-                        <p className="form-step-subtitle">Precisamos saber quem você é e como podemos te encontrar.</p>
-                        <div className="form-fields-container">
-                            <div className="form-group">
-                                <label htmlFor="fullName" className="form-label">Nome completo *</label>
-                                <input type="text" id="fullName" name="fullName" className="form-input" placeholder="Seu nome" value={formData.fullName} onChange={handleChange} required />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="company" className="form-label">Empresa *</label>
-                                <input type="text" id="company" name="company" className="form-input" placeholder="Nome da sua empresa" value={formData.company} onChange={handleChange} required />
-                            </div>
-                            <div className={`form-group ${emailError ? 'has-error' : ''}`}>
-                                <label htmlFor="email" className="form-label">E-mail *</label>
-                                <input type="email" id="email" name="email" className="form-input" placeholder="seuemail@aqui.com" value={formData.email} onChange={handleChange} onBlur={handleEmailBlur} required />
-                                {emailError && <p className="form-error-message">{emailError}</p>}
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="phone" className="form-label">Telefone *</label>
-                                <input type="tel" id="phone" name="phone" className="form-input" placeholder="(00) 00000-0000" value={formData.phone} onChange={handleChange} required maxLength="15" />
-                            </div>
-                        </div>
-                        <p className="form-note">* Campos obrigatórios</p>
-                    </div>
-                );
+                return <Step1ContactInfo 
+                    formData={formData} 
+                    handleChange={handleChange} 
+                    handleEmailBlur={handleEmailBlur} 
+                    emailError={emailError} 
+                />;
             case 2:
                 return (
                     <div className="form-step">
@@ -294,7 +318,7 @@ function SolicitacaoForm() {
                                         { name: 'webapp', text: 'Desenvolvimento de Aplicação Web (SaaS, Dashboard)' },
                                         { name: 'mobile', text: 'Desenvolvimento de Aplicativo Mobile (iOS/Android)' },
                                         { name: 'automation', text: 'Automação de Processos / Integrações' },
-                                        { name: 'consulting', text: 'Ainda não sei, preciso de consultoria' },
+                                        { name: 'consulting', text: 'Ainda não sei, preciso de consultoria para definir' },
                                     ].map(service => (
                                         <label key={service.name} className="form-option-label">
                                             <input type="checkbox" name={service.name} checked={formData.services[service.name]} onChange={handleCheckboxChange} />
@@ -347,27 +371,38 @@ function SolicitacaoForm() {
                 {/* Conteúdo da Etapa */}
                 <form className="solicitacao-form" onSubmit={handleSubmit}>
                     {renderStepContent()}
-                </form>
 
-                {/* Navegação */}
-                <div className="form-navigation">
-                    {currentStep > 1 && (
-                        <button onClick={prevStep} className="form-button form-button-secondary">
-                            Voltar
-                        </button>
-                    )}
-                    {currentStep < steps.length ? (
-                        <button onClick={handleNextStep} className="form-button" disabled={!isStepValid()}>
-                            Avançar
-                        </button>
-                    ) : (
-                        <button onClick={handleSubmit} id='submit-button' className="form-button" disabled={!isStepValid() || submissionStatus === 'loading'}>
-                            {submissionStatus === 'loading' 
-                                ? 'Enviando...' 
-                                : 'Enviar Solicitação'}
-                        </button>
-                    )}
-                </div>
+                    {/* Navegação movida para dentro do formulário */}
+                    <div className="form-navigation">
+                        {currentStep > 1 && (
+                            // Usamos type="button" para evitar que ele submeta o formulário
+                            <button type="button" onClick={prevStep} className="form-button form-button-secondary">
+                                Voltar
+                            </button>
+                        )}
+                        {currentStep < steps.length ? (
+                            // Usamos type="button" para evitar que ele submeta o formulário
+                            <button type="button" onClick={handleNextStep} className="form-button" disabled={!isStepValid()}>
+                                Avançar
+                            </button>
+                        ) : (
+                            <button type="submit" id='submit-button' className="form-button" disabled={!isStepValid() || !executeRecaptcha || submissionStatus === 'loading'}>
+                                {(() => {
+                                    if (submissionStatus === 'loading') return 'Enviando...';
+                                    if (!executeRecaptcha) return 'Aguardando reCAPTCHA...';
+                                    if (!isStepValid()) return 'Preencha os campos';
+                                    return 'Enviar Solicitação';
+                                })()}
+                            </button>
+                        )}
+                        {/* Exibe a mensagem de erro da API aqui */}
+                        {apiError && (
+                            <p className="form-error-message" style={{ width: '100%', textAlign: 'center', marginTop: '15px' }}>
+                                {apiError}
+                            </p>
+                        )}
+                    </div>
+                </form>
             </div>
 
             <div className="direct-contact-section fade-in-section">
@@ -390,6 +425,22 @@ function SolicitacaoForm() {
 
 export default function SolicitacaoPage() {
     const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+
+    // Adiciona uma verificação para garantir que a chave do reCAPTCHA foi carregada.
+    if (!siteKey) {
+        return (
+            <section className="solicitacao-page-content">
+                <div className="solicitacao-form-container" style={{ textAlign: 'center', padding: '40px' }}>
+                    <h2 className="form-step-title" style={{ color: 'var(--color-primary)' }}>Erro de Configuração</h2>
+                    <p className="form-step-subtitle" style={{ marginTop: '20px' }}>
+                        A chave do site Google reCAPTCHA não foi encontrada. Verifique se a variável de ambiente 
+                        <code style={{ backgroundColor: 'var(--color-accent)', color: 'var(--color-text-title)', padding: '2px 6px', borderRadius: '4px', margin: '0 5px' }}>NEXT_PUBLIC_RECAPTCHA_SITE_KEY</code> 
+                        está configurada corretamente.
+                    </p>
+                </div>
+            </section>
+        );
+    }
 
     return (
         <GoogleReCaptchaProvider reCaptchaKey={siteKey}>
