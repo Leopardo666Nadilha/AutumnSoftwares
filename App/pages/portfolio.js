@@ -46,25 +46,20 @@ function PortfolioPage({ projects }) {
 }
 
 const customProjectDetails = {
-    'code-connect': {
-        title: 'Sistema de Upload de Projetos com UI Moderna',
-        body: 'Estudo de caso sobre a criação de um formulário multi-etapas com interface intuitiva para upload e gerenciamento de projetos, focado na experiência do usuário.',
-    },
     'alura-books': {
         title: 'Livraria Digital Mobile-First',
         body: 'Conceito de um aplicativo de e-commerce para venda de livros, projetado com uma abordagem mobile-first para garantir uma experiência de compra e leitura fluida em qualquer dispositivo.',
     },
-    'alura-plus':{
-        title: 'Plataforma de subscrição de vídeos educacionais',
-        body: 'Conceito de uma plataforma de streaming focada em vídeos educacionais.',
+    'Aeris':{
+        title: 'Sistema de Finanças Pessoais',
+        body: 'Plataforma PWA para controle das finanças pessoais, desenvolvido com Next.js em uma abordagem mobile-first.',
     }
 };
 
 // Lista dos repositórios que você quer que apareçam no portfólio.
 const portfolioRepoNames = [
-    'code-connect',
     'alura-books',
-    'alura-plus',
+    'Aeris',
 ];
 
 export async function getStaticProps() {

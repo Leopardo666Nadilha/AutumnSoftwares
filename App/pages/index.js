@@ -12,9 +12,9 @@ import portfolioPreview2 from '../public/portfolio-preview-2.jpg';
 // Dados dos projetos para a prévia
 const portfolioData = [
     {
-        id: 'project-UI-form-system',
-        title: 'Sistema de upload de formulários',
-        description: 'Desenvolvimento de um sistema de upload de projetos via formulário.',
+        id: 'Aeris',
+        title: 'Sistema de finanças pessoais',
+        description: 'Criação de um sistema PWA de controle financeiro pessoal, feito em Next.js (Mobile-first) com foco em usabilidade e design responsivo. Desenvolvido para ajudar usuários a gerenciar suas finanças de forma eficiente.',
         image: portfolioPreview1,
     },
     {
