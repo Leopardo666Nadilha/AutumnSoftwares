@@ -411,8 +411,8 @@ function SolicitacaoForm() {
                     Entendemos perfeitamente. Se o formulário não for o ideal para você, sinta-se à vontade para enviar um resumo da sua ideia diretamente para o nosso e-mail ou WhatsApp. Estamos prontos para ouvir.
                 </p>
                 <div className="direct-contact-info">
-                    <a href="mailto:contato@autumnsoftwares.com" className="contact-link">
-                        E-mail: contato@autumnsoftwares.com
+                    <a href="mailto:softwares.autumn@gmail.com" className="contact-link">
+                        E-mail: softwares.autumn@gmail.com
                     </a>
                     <a href="https://wa.me/5547991739602" target="_blank" rel="noopener noreferrer" className="contact-link">
                         WhatsApp: (47) 99173-9602

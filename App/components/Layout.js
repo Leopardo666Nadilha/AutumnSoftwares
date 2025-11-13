@@ -51,7 +51,7 @@ const Footer = () => {
                     <h3 className="footer-heading">Contato</h3>
                     <ul className="footer-contact">
                         <li><a href="https://wa.me/5547991739602" target="_blank" rel="noopener noreferrer"><FaWhatsapp /> (47) 99173-9602</a></li>
-                        <li><a href="mailto:contato@autumnsoftwares.com"><FaEnvelope /> contato@autumnsoftwares.com</a></li>
+                        <li><a href="mailto:softwares.autumn@gmail.com"><FaEnvelope /> softwares.autumn@gmail.com</a></li>
                         <li><a href="https://maps.google.com/?q=Papanduva/SC" target="_blank" rel="noopener noreferrer"><FaMapMarkerAlt /> Papanduva/SC - Brasil</a></li>
                     </ul>
                 </div>
