@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { PiCompass, PiClock, PiCode } from 'react-icons/pi';
 import { RiDoubleQuotesR } from 'react-icons/ri';
 import mainBg from '../public/main-bg.jpg';
-// Importe as imagens dos projetos
 import portfolioPreview1 from '../public/portfolio-preview-1.jpg';
 import portfolioPreview2 from '../public/portfolio-preview-2.jpg';
 
@@ -18,9 +17,9 @@ const portfolioData = [
         image: portfolioPreview1,
     },
     {
-        id: 'project-books-library',
-        title: 'Aplicativo de venda de Livros',
-        description: 'Criação de um aplicativo desenvolvido no modelo mobile-first, oferecendo uma experiência intuitiva para compra e leitura de livros digitais.',
+        id: 'GremioForcaJovem',
+        title: 'Site oficial do Grêmio Força Jovem',
+        description: 'Criação de um site para o Grêmio escolar com tema dark e paleta de cores estilo Cyberpunk, com sistema de blog integrado para notícias e eventos, utilizando Next.js e Google Sheets para atualizações fáceis. Inclui medidas anti-spam com HoneyPot.',
         image: portfolioPreview2,
     }
 ];

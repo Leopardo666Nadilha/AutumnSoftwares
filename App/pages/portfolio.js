@@ -46,9 +46,9 @@ function PortfolioPage({ projects }) {
 }
 
 const customProjectDetails = {
-    'alura-books': {
-        title: 'Livraria Digital Mobile-First',
-        body: 'Conceito de um aplicativo de e-commerce para venda de livros, projetado com uma abordagem mobile-first para garantir uma experiência de compra e leitura fluida em qualquer dispositivo.',
+    'GremioForcaJovem': {
+        title: 'Site oficial do Grêmio Força Jovem',
+        body: 'Site do Grêmio Força Jovem da escola EEB Alinor Vieira Côrte, desenvolvido com Next.js. Possui um sistema de blog integrado para notícias e eventos com atualização instantânea pelo Google Sheets (escolha devido a facilidade para os jovens utilizarem), além de um sistema HoneyPot para evitar spam de bots.',
     },
     'Aeris':{
         title: 'Sistema de Finanças Pessoais',
@@ -58,7 +58,7 @@ const customProjectDetails = {
 
 // Lista dos repositórios que você quer que apareçam no portfólio.
 const portfolioRepoNames = [
-    'alura-books',
+    'GremioForcaJovem',
     'Aeris',
 ];
 
