@@ -28,8 +28,14 @@ function PortfolioPage({ projects }) {
                 <ul className='projects-portfolio'>
                     {projects.map((project) => ( 
                         <li key={project.id} id={project.id.toString()} className="portfolio-list-item fade-in-section">
-                            {/* Adiciona um link para o repositório no GitHub */}
-                            <h2><a href={project.url} target="_blank" rel="noopener noreferrer">{project.title}</a></h2>
+                            {/* Adiciona um link para o repositório no GitHub, se existir */}
+                            <h2>
+                                {project.url ? (
+                                    <a href={project.url} target="_blank" rel="noopener noreferrer">{project.title}</a>
+                                ) : (
+                                    project.title
+                                )}
+                            </h2>
                             <p>{project.body}</p>                            
                             {/* Adiciona o link para o projeto ao vivo (deploy) */}
                             {project.liveUrl && (
@@ -46,6 +52,10 @@ function PortfolioPage({ projects }) {
 }
 
 const customProjectDetails = {
+    'PresalePrimeCare': {
+        title: 'Página de pré-lançamento para o PrimeCare.AI',
+        body: 'Landing page construída para o pré-lançamento do PrimeCare.AI, um sistema de IA criado para otimizar a documentação clínica e a transcrição de áudio das consultas. Desenvolvido com Next.js, a página apresenta um design moderno e responsivo, destacando os principais benefícios do produto e incentivando os visitantes a se inscreverem para atualizações e acesso antecipado.',
+    },
     'GremioForcaJovem': {
         title: 'Site oficial do Grêmio Força Jovem',
         body: 'Site do Grêmio Força Jovem da escola EEB Alinor Vieira Côrte, desenvolvido com Next.js. Possui um sistema de blog integrado para notícias e eventos com atualização instantânea pelo Google Sheets (escolha devido a facilidade para os jovens utilizarem), além de um sistema HoneyPot para evitar spam de bots.',
@@ -58,8 +68,19 @@ const customProjectDetails = {
 
 // Lista dos repositórios que você quer que apareçam no portfólio.
 const portfolioRepoNames = [
+    'PresalePrimeCare',
     'GremioForcaJovem',
-    'Aeris',
+    'Aeris'
+];
+
+const manualProjects = [
+    {
+        id: 'PrimeCareAI',
+        title: 'Página de pré-lançamento para o PrimeCare.AI',
+        body: 'Landing page construída para o pré-lançamento do PrimeCare.AI, um sistema de IA criado para otimizar a documentação clínica e a transcrição de áudio das consultas. Desenvolvido com Next.js, a página apresenta um design moderno e responsivo, destacando os principais benefícios do produto e incentivando os visitantes a se inscreverem para atualizações e acesso antecipado.',
+        url: null,
+        liveUrl: 'https://www.primecareai.com.br',
+    }
 ];
 
 export async function getStaticProps() {
@@ -82,9 +103,11 @@ export async function getStaticProps() {
             };
         });
 
+    const allProjects = [...manualProjects, ...projects];
+
     return {
         props: { 
-            projects 
+            projects: allProjects 
         },
     };
 }

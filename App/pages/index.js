@@ -7,9 +7,16 @@ import { RiDoubleQuotesR } from 'react-icons/ri';
 import mainBg from '../public/main-bg.jpg';
 import portfolioPreview1 from '../public/portfolio-preview-1.jpg';
 import portfolioPreview2 from '../public/portfolio-preview-2.jpg';
+import portfolioPreview3 from '../public/portfolio-preview-3.jpg';
 
 // Dados dos projetos para a prévia
 const portfolioData = [
+    {
+        id: 'PrimeCareAI',
+        title: 'Página de pré-lançamento para o PrimeCare.AI',
+        description: 'Página criada para promover o pré-lançamento do PrimeCare.AI, um sistema de IA para otimizar documentação clínica e transcrições de áudio. Acesse para ver a solução em funcionamento.',
+        image: portfolioPreview3,
+    },
     {
         id: 'Aeris',
         title: 'Sistema de finanças pessoais',
@@ -126,7 +133,7 @@ export default function HomePage() {
                             <div className="portfolio-card-content">
                                 <h3 className="title-benefits">{project.title}</h3>
                                 <p className="text-benefits">{project.description}</p>
-                                <Link href={`/portfolio#${project.id}`} className="portfolio-button">
+                                <Link href={`/portfolio`} className="portfolio-button">
                                     Ver detalhes
                                 </Link>
                             </div>
