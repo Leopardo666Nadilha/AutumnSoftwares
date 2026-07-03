@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 250" width="100%" height="100%">
+  <rect x="96" y="200" width="8" height="35" rx="2" fill="#4D1A07" stroke="#220B03" stroke-width="4" stroke-linejoin="round" />
+
+  <polygon points="100,110 100,15 50,55" fill="#F9B822" />
+  <polygon points="100,110 100,15 150,55" fill="#F2921D" />
+  
+  <polygon points="100,110 50,55 30,110" fill="#D97028" />
+  <polygon points="100,110 150,55 170,110" fill="#C45A1E" />
+  
+  <polygon points="100,110 30,110 50,165" fill="#A34015" />
+  <polygon points="100,110 170,110 150,165" fill="#8A3111" />
+  
+  <polygon points="100,110 50,165 100,205" fill="#63220B" />
+  <polygon points="100,110 150,165 100,205" fill="#4D1A07" />
+
+  <line x1="100" y1="15" x2="100" y2="205" stroke="#220B03" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="30" y1="110" x2="170" y2="110" stroke="#220B03" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="50" y1="55" x2="150" y2="165" stroke="#220B03" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="50" y1="165" x2="150" y2="55" stroke="#220B03" stroke-width="2.5" stroke-linecap="round" />
+
+  <polygon points="100,15 150,55 170,110 150,165 100,205 50,165 30,110 50,55" fill="none" stroke="#220B03" stroke-width="5" stroke-linejoin="round" />
+</svg>
