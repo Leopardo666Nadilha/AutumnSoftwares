@@ -75,6 +75,13 @@ const portfolioRepoNames = [
 
 const manualProjects = [
     {
+        id: 'MotorTributario',
+        title: 'Motor Tributário Autumn',
+        body: 'Plataforma para emissão e consulta de notas fiscais já no novo modelo da reforma tributária, com aprovação pela SEFAZ. Conta com um dashboard e ferramentas de gestão aprimoradas para o fluxo e controle tributário.',
+        url: null,
+        liveUrl: 'https://fiscal.autumnsoftwares.com',
+    },
+    {
         id: 'PrimeCareAI',
         title: 'Página de pré-lançamento para o PrimeCare.AI',
         body: 'Landing page construída para o pré-lançamento do PrimeCare.AI, um sistema de IA criado para otimizar a documentação clínica e a transcrição de áudio das consultas. Desenvolvido com Next.js, a página apresenta um design moderno e responsivo, destacando os principais benefícios do produto e incentivando os visitantes a se inscreverem para atualizações e acesso antecipado.',

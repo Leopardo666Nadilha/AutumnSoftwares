@@ -74,6 +74,7 @@ table {
 
 html {
     background-color: var(--color-background);
+    scroll-behavior: smooth;
 }
 
 body {
@@ -563,62 +564,11 @@ a {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.portfolio-preview-container {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 50px;
-    width: 100%;
-    max-width: 1200px;
-    flex-wrap: wrap; /* Permite que os cards quebrem em telas menores */
-}
-
-.portfolio-card {
-    flex: 1;
-    min-width: 300px;
-    max-width: 450px;
-    background-color: color-mix(in srgb, var(--color-background) 95%, #000 5%);
-    border-radius: 20px;
-    overflow: hidden; /* Garante que a imagem não ultrapasse as bordas arredondadas */
-    display: flex;
-    flex-direction: column;
-    border: 2px solid transparent;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-}
-
-.portfolio-card:hover {
-    transform: scale(1.05);
-    border-color: var(--color-primary);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-.portfolio-card:hover .title-benefits {
-    color: var(--color-primary);
-}
-
-.portfolio-card-image {
-    width: 100%;
-    height: 250px; /* Altura fixa para a imagem */
-    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
-}
-
-.portfolio-card-content {
-    padding: 1.5rem 2rem 2rem;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; /* Faz este container crescer para preencher o espaço */
-    text-align: left;
-}
-
-.portfolio-card-content .text-benefits {
-    flex-grow: 1; /* Empurra o botão para o final do card */
-    margin-bottom: 1.5rem;
-}
-
 .portfolio-list-item {
     background-color: color-mix(in srgb, var(--color-background) 95%, #000 5%);
     border-radius: 20px;
     padding: 2.5rem; /* Ajuste no padding para compensar o espaço do gradiente */
+    scroll-margin-top: 110px; /* Compensa o header sticky ao chegar via âncora (#id) */
     border: 2px solid color-mix(in srgb, var(--color-text) 15%, transparent);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative; /* Necessário para posicionar o pseudo-elemento */
@@ -642,6 +592,28 @@ a {
 .portfolio-list-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Destaque temporário quando o usuário chega via âncora (ex: /portfolio#GremioForcaJovem) */
+.portfolio-list-item:target {
+    animation: targetPulse 1.6s ease-out 1;
+}
+
+@keyframes targetPulse {
+    0% {
+        box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-primary) 55%, transparent);
+    }
+
+    100% {
+        box-shadow: 0 0 0 28px color-mix(in srgb, var(--color-primary) 0%, transparent);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .portfolio-list-item:target {
+        animation: none;
+        box-shadow: 0 0 0 4px var(--color-primary);
+    }
 }
 
 .portfolio-list-item h2 {
@@ -1272,16 +1244,14 @@ select.form-input option {
     }
 
     .benefits-container,
-    .compromise-banner,
-    .portfolio-preview-container {
+    .compromise-banner {
         flex-direction: column;
         align-items: center;
         gap: 30px;
     }
 
     .benefit-item,
-    .compromise-card,
-    .portfolio-card {
+    .compromise-card {
         max-width: 500px; /* Aumenta a largura máxima nos tablets */
         width: 100%;
     }

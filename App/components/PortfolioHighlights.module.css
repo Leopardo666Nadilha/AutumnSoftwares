@@ -1,0 +1,131 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* Camada de ENTRADA (stagger reveal). Só cuida de opacity/translateY,
+   com o delay incremental por card. Não mexe em rotação — isso fica
+   isolado em .tilt, senão o delay do stagger vaza pro tilt do mouse
+   e cada card responde num tempo diferente. */
+.card {
+    opacity: 0;
+    transform: translateY(40px);
+    transition:
+        opacity 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--delay, 0ms),
+        transform 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--delay, 0ms);
+    border-radius: 20px;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--color-background) 95%, #000 5%);
+    display: flex;
+    flex-direction: column;
+    will-change: opacity, transform;
+    perspective: 900px;
+}
+
+.isVisible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Camada de TILT (segue o mouse). Transição curta e sem delay,
+   igual em todos os cards, independente do índice/stagger. */
+.tilt {
+    --rotate-x: 0deg;
+    --rotate-y: 0deg;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    transform-style: preserve-3d;
+    transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y));
+    transition: transform 150ms ease-out;
+    will-change: transform;
+}
+
+.imageWrapper {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+}
+
+.image {
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card:hover .image {
+    transform: scale(1.08);
+}
+
+.shine {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 40%, rgba(255, 255, 255, 0.25) 50%, transparent 60%);
+    transform: translateX(-120%);
+    transition: transform 0.7s ease;
+    pointer-events: none;
+}
+
+.card:hover .shine {
+    transform: translateX(120%);
+}
+
+.content {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+}
+
+.title {
+    font-size: 1.35rem;
+    color: var(--color-text);
+    transition: color 0.3s ease;
+}
+
+.card:hover .title {
+    color: var(--color-primary);
+}
+
+.description {
+    color: var(--color-text);
+    opacity: 0.85;
+    flex: 1;
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    align-self: flex-start;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.button:hover .arrow {
+    transform: translateX(6px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .card,
+    .tilt,
+    .image,
+    .shine,
+    .arrow {
+        transition: none !important;
+    }
+
+    .card,
+    .tilt {
+        opacity: 1;
+        transform: none;
+    }
+}

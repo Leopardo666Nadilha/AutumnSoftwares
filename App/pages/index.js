@@ -1,27 +1,28 @@
 import { useEffect } from 'react';
 import ScrollDownIndicator from '../components/ScrollDownIndicator';
+import PortfolioHighlights from '../components/PortfolioHighlights';
 import Link from 'next/link';
 import Image from 'next/image';
 import { PiCompass, PiClock, PiCode } from 'react-icons/pi';
 import { RiDoubleQuotesR } from 'react-icons/ri';
 import mainBg from '../public/main-bg.jpg';
-import portfolioPreview1 from '../public/portfolio-preview-1.jpg';
 import portfolioPreview2 from '../public/portfolio-preview-2.jpg';
 import portfolioPreview3 from '../public/portfolio-preview-3.jpg';
+import portfolioPreview4 from '../public/portfolio-preview-4.jpg';
 
 // Dados dos projetos para a prévia
 const portfolioData = [
+    {
+        id: 'MotorTributario',
+        title: 'Motor Tributário Autumn',
+        description: 'Plataforma para emissão e consulta de notas fiscais já no novo modelo da reforma tributária, com aprovação pela SEFAZ. Conta com um dashboard e ferramentas de gestão aprimoradas para o fluxo e controle tributário.',
+        image: portfolioPreview4,
+    },
     {
         id: 'PrimeCareAI',
         title: 'Página de pré-lançamento para o PrimeCare.AI',
         description: 'Página criada para promover o pré-lançamento do PrimeCare.AI, um sistema de IA para otimizar documentação clínica e transcrições de áudio. Acesse para ver a solução em funcionamento.',
         image: portfolioPreview3,
-    },
-    {
-        id: 'Aeris',
-        title: 'Sistema de finanças pessoais',
-        description: 'Criação de um sistema PWA de controle financeiro pessoal, feito em Next.js (Mobile-first) com foco em usabilidade e design responsivo. Desenvolvido para ajudar usuários a gerenciar suas finanças de forma eficiente.',
-        image: portfolioPreview1,
     },
     {
         id: 'GremioForcaJovem',
@@ -120,28 +121,7 @@ export default function HomePage() {
                     </div>
                 </div>
             </section>
-            <section className="portfolio-section next-section fade-in-section">
-                <div><h2 className='title-section-portfolio title-section-about'>Projetos de <strong className='title-header-portfolio title-header'>Destaque</strong></h2>
-                <p className='subtitle-section-about'>
-                    Estes são alguns dos projetos que cultivamos com dedicação e excelência.
-                </p>
-                </div>
-                <div className="portfolio-preview-container">
-                    {portfolioData.map((project) => (
-                        <div key={project.id} className="portfolio-card">
-                            <Image src={project.image} alt={project.title} className="portfolio-card-image" placeholder="blur" />
-                            <div className="portfolio-card-content">
-                                <h3 className="title-benefits">{project.title}</h3>
-                                <p className="text-benefits">{project.description}</p>
-                                <Link href={`/portfolio`} className="portfolio-button">
-                                    Ver detalhes
-                                </Link>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-                <Link href="/portfolio" className="portfolio-cta">Ver portfólio completo</Link>
-            </section>
+            <PortfolioHighlights projects={portfolioData} />
             <section className='service-offer fade-in-section'>
                 <p className='title-section-offer'>Pronto para tirar o seu projeto do papel?</p>
                 <p className='subtitle-section-offer'>Vamos cultivar juntos uma solução que transforme o seu negócio.</p>
