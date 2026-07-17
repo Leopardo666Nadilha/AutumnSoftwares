@@ -3,24 +3,26 @@ import Link from 'next/link';
 import ThemeToggleButton from './ThemeToggleButton';
 import { FaEnvelope, FaWhatsapp, FaMapMarkerAlt } from 'react-icons/fa';
 import { useRouter } from 'next/router';
+import styles from './Layout.module.css';
+import typography from '../styles/shared/typography.module.css';
 
 const Header = () => {
     const router = useRouter(); // Hook para obter a rota atual
 
     return (
-        <header className="main-header">
+        <header className={styles.mainHeader}>
             <nav>
-                <Link href="/" className='title-full'><strong className='title-header'>Autumn</strong> Softwares</Link>
+                <Link href="/" className={styles.titleFull}><strong className={typography.titleHeader}>Autumn</strong> Softwares</Link>
             </nav>
-            <nav className="main-nav" style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-                <div className="nav-links-group">
-                    {/* Adicionamos a classe 'nav-link' e a classe 'active' condicionalmente */}
-                    <Link href="/" className={`nav-link ${router.pathname === '/' ? 'active' : ''}`}>Início</Link>
-                    <Link href="/sobre" className={`nav-link ${router.pathname === '/sobre' ? 'active' : ''}`}>Sobre</Link>
-                    <Link href="/portfolio" className={`nav-link ${router.pathname === '/portfolio' ? 'active' : ''}`}>Portfólio</Link>
+            <nav className={styles.mainNav}>
+                <div className={styles.navLinksGroup}>
+                    {/* Adicionamos a classe 'active' condicionalmente */}
+                    <Link href="/" className={`${styles.navLink} ${router.pathname === '/' ? styles.active : ''}`}>Início</Link>
+                    <Link href="/sobre" className={`${styles.navLink} ${router.pathname === '/sobre' ? styles.active : ''}`}>Sobre</Link>
+                    <Link href="/portfolio" className={`${styles.navLink} ${router.pathname === '/portfolio' ? styles.active : ''}`}>Portfólio</Link>
                 </div>
-                <div className="nav-actions-group">
-                    <Link href="/solicitacao" className="cta-link">Solicitar Projeto</Link>
+                <div className={styles.navActionsGroup}>
+                    <Link href="/solicitacao" className={styles.ctaLink}>Solicitar Projeto</Link>
                     <ThemeToggleButton />
                 </div>
             </nav>
@@ -30,16 +32,16 @@ const Header = () => {
 
 const Footer = () => {
     return (
-        <footer className="main-footer">
-            <div className="footer-container">
-                <div className="footer-column">
-                    <Link href="/" className='title-full'><strong className='title-header'>Autumn</strong> Softwares</Link>
+        <footer className={styles.mainFooter}>
+            <div className={styles.footerContainer}>
+                <div className={styles.footerColumn}>
+                    <Link href="/" className={styles.titleFull}><strong className={styles.footerBrandHeader}>Autumn</strong> Softwares</Link>
                     <p id='footer_text'>Amadurecendo ideias em software sob demanda. Transformamos seus desafios de negócio em soluções digitais robustas.</p>
                 </div>
 
-                <div className="footer-column">
-                    <h3 className="footer-heading">Links Rápidos</h3>
-                    <ul className="footer-links">
+                <div className={styles.footerColumn}>
+                    <h3 className={styles.footerHeading}>Links Rápidos</h3>
+                    <ul className={styles.footerLinks}>
                         <li><Link href="/">Início</Link></li>
                         <li><Link href="/sobre">Sobre nós</Link></li>
                         <li><Link href="/portfolio">Portfólio</Link></li>
@@ -47,16 +49,16 @@ const Footer = () => {
                     </ul>
                 </div>
 
-                <div className="footer-column">
-                    <h3 className="footer-heading">Contato</h3>
-                    <ul className="footer-contact">
+                <div className={styles.footerColumn}>
+                    <h3 className={styles.footerHeading}>Contato</h3>
+                    <ul className={styles.footerContact}>
                         <li><a href="https://wa.me/5547991739602" target="_blank" rel="noopener noreferrer"><FaWhatsapp /> (47) 99173-9602</a></li>
                         <li><a href="mailto:softwares.autumn@gmail.com"><FaEnvelope /> softwares.autumn@gmail.com</a></li>
                         <li><a href="https://maps.google.com/?q=Papanduva/SC" target="_blank" rel="noopener noreferrer"><FaMapMarkerAlt /> Papanduva/SC - Brasil</a></li>
                     </ul>
                 </div>
             </div>
-            <p className="copyright">© {new Date().getFullYear()} Autumn Softwares. Todos os direitos reservados.</p>
+            <p className={styles.copyright}>© {new Date().getFullYear()} Autumn Softwares. Todos os direitos reservados.</p>
         </footer>
     );
 };

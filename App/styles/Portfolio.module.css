@@ -1,0 +1,114 @@
+/* Estilos exclusivos da página de Portfólio (pages/portfolio.js) */
+
+.portfolioSectionTitle,
+.portfolioSectionSubtitle {
+    text-align: center;
+}
+
+.portfolioSectionTitle {
+    margin-top: 40px;
+}
+
+.projectsPortfolio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 60px;
+}
+
+.portfolioListItem {
+    background-color: color-mix(in srgb, var(--color-background) 95%, #000 5%);
+    border-radius: 20px;
+    padding: 2.5rem;
+    scroll-margin-top: 110px; /* Compensa o header sticky ao chegar via âncora (#id) */
+    border: 2px solid color-mix(in srgb, var(--color-text) 15%, transparent);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    margin-top: 60px;
+    width: 70%;
+}
+
+.portfolioListItem::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: linear-gradient(90deg, var(--color-primary), #D69E2E);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.portfolioListItem:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.portfolioListItem:target,
+.portfolioListItem.pulse {
+    animation: targetPulse 1.6s ease-out 1;
+}
+
+@keyframes targetPulse {
+    0% {
+        box-shadow: inset 0 0 0 0 color-mix(in srgb, var(--color-primary) 70%, transparent);
+    }
+
+    30% {
+        box-shadow: inset 0 0 0 5px color-mix(in srgb, var(--color-primary) 70%, transparent);
+    }
+
+    100% {
+        box-shadow: inset 0 0 0 5px transparent;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .portfolioListItem:target {
+        animation: none;
+        box-shadow: inset 0 0 0 4px var(--color-primary);
+    }
+}
+
+.portfolioListItem h2 {
+    font-size: 1.75rem;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.portfolioListItem:hover h2 {
+    color: var(--color-primary);
+}
+
+.portfolioListItem p {
+    padding: 10px 0px;
+}
+
+.portfolioButton {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 16px;
+    background-color: var(--color-footer);
+    color: var(--color-text-title);
+    border-radius: 6px;
+    font-weight: 500;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.portfolioButton:hover {
+    transform: scale(1.05);
+}
+
+.portfolioButtonLive {
+    background-color: var(--color-button-portfolio);
+}
+
+@media (max-width: 768px) {
+    .portfolioListItem {
+        width: 95%;
+        padding: 1.5rem;
+    }
+}

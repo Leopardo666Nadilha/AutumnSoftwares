@@ -5,6 +5,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { PiCompass, PiClock, PiCode } from 'react-icons/pi';
 import { RiDoubleQuotesR } from 'react-icons/ri';
+import styles from '../styles/Home.module.css';
+import sections from '../styles/shared/sections.module.css';
+import typography from '../styles/shared/typography.module.css';
 import mainBg from '../public/main-bg.jpg';
 import portfolioPreview2 from '../public/portfolio-preview-2.jpg';
 import portfolioPreview3 from '../public/portfolio-preview-3.jpg';
@@ -45,17 +48,17 @@ export default function HomePage() {
             threshold: 0.1 // A animação começa quando 10% do elemento está visível
         });
 
-        const sections = document.querySelectorAll('.fade-in-section');
-        sections.forEach(section => observer.observe(section));
+        const fadeSections = document.querySelectorAll('.fade-in-section');
+        fadeSections.forEach(section => observer.observe(section));
 
         // Limpeza ao desmontar o componente
-        return () => sections.forEach(section => observer.unobserve(section));
+        return () => fadeSections.forEach(section => observer.unobserve(section));
     }, []);
 
     return (
         <>
             {/*Seção que terá a imagem de fundo */}
-            <section className="hero-section">
+            <section className={styles.heroSection}>
                 <Image
                     src={mainBg}
                     alt="Folhas de outono em primeiro plano com um prédio moderno ao fundo"
@@ -65,67 +68,67 @@ export default function HomePage() {
                     priority
                     style={{ zIndex: 0, objectFit: 'cover' }}
                 />
-                <div className="hero-overlay"></div>
-                <div className="hero-content" style={{ zIndex: 1 }}>
-                    <h1>Suas ideias <strong className='destaque-title'>amadurecidas</strong> em software.</h1>
+                <div className={styles.heroOverlay}></div>
+                <div className={styles.heroContent} style={{ zIndex: 1 }}>
+                    <h1>Suas ideias <strong className={styles.destaqueTitle}>amadurecidas</strong> em software.</h1>
                     <p>Transformando ideias em soluções digitais robustas e personalizadas.</p>
-                    <div className="hero-buttons">
-                        <Link href="/solicitacao" className="hero-cta-primary">Solicitar Projeto</Link>
-                        <Link href="/portfolio" className="hero-cta-secondary">Conheça nosso Portfólio</Link>
+                    <div className={styles.heroButtons}>
+                        <Link href="/solicitacao" className={styles.heroCtaPrimary}>Solicitar Projeto</Link>
+                        <Link href="/portfolio" className={styles.heroCtaSecondary}>Conheça nosso Portfólio</Link>
                     </div>
                 </div>
                 <ScrollDownIndicator />
             </section>
 
             {/* Seção de destino para a rolagem */}
-            <section id="next-section" className="next-section fade-in-section">
-                <div><h2 className='title-section-about'>A precisão do <strong className='title-header'>Software sob demanda</strong></h2>
-                <p className='subtitle-section-about'>
+            <section id="next-section" className={`${sections.nextSection} fade-in-section`}>
+                <div><h2 className={typography.titleSectionAbout}>A precisão do <strong className={typography.titleHeader}>Software sob demanda</strong></h2>
+                <p className={typography.subtitleSectionAbout}>
                     Nosso processo é focado em transparência, excelência técnica e resultados reais.
                 </p>
                 </div>
-                <div className="benefits-container">
-                    <div className="benefit-item">
-                        <PiCompass className="benefit-icon" />
-                        <h3 className="title-benefits">Maturidade técnica</h3>
-                        <p className="text-benefits">Antes da primeira linha de código, mergulhamos no seu negócio. Entendemos seu desafio para desenhar a arquitetura exata que sua operação precisa.</p>
+                <div className={sections.benefitsContainer}>
+                    <div className={sections.benefitItem}>
+                        <PiCompass className={sections.benefitIcon} />
+                        <h3 className={sections.titleBenefits}>Maturidade técnica</h3>
+                        <p className={sections.textBenefits}>Antes da primeira linha de código, mergulhamos no seu negócio. Entendemos seu desafio para desenhar a arquitetura exata que sua operação precisa.</p>
                     </div>
-                    <div className="benefit-item">
-                        <PiClock className="benefit-icon" />
-                        <h3 className="title-benefits">Entrega pontual</h3>
-                        <p className="text-benefits">Prazos definidos e cumpridos. Como os ciclos do outono, nossas entregas são previsíveis e transparentes.</p>
+                    <div className={sections.benefitItem}>
+                        <PiClock className={sections.benefitIcon} />
+                        <h3 className={sections.titleBenefits}>Entrega pontual</h3>
+                        <p className={sections.textBenefits}>Prazos definidos e cumpridos. Como os ciclos do outono, nossas entregas são previsíveis e transparentes.</p>
                     </div>
-                    <div className="benefit-item">
-                        <PiCode className="benefit-icon" />
-                        <h3 className="title-benefits">Código limpo</h3>
-                        <p className="text-benefits">Cada linha de código é escrita pensando em manutenibilidade e performance a longo prazo.</p>
+                    <div className={sections.benefitItem}>
+                        <PiCode className={sections.benefitIcon} />
+                        <h3 className={sections.titleBenefits}>Código limpo</h3>
+                        <p className={sections.textBenefits}>Cada linha de código é escrita pensando em manutenibilidade e performance a longo prazo.</p>
                     </div>
                 </div>
             </section>
-            <section className='compromise-container fade-in-section'>
+            <section className={`${styles.compromiseContainer} fade-in-section`}>
                 <div>
-                    <h2 className='title-section-compromise'>Como <strong className='title-compromise'>cultivamos</strong> seu software</h2>
+                    <h2 className={styles.titleSectionCompromise}>Como <strong className={styles.titleCompromise}>cultivamos</strong> seu software</h2>
                 </div>
-                <div className='compromise-banner'>
-                    <div className='compromise-card'>
-                        <RiDoubleQuotesR className="compromise-quote-icon" />
-                        <h3 className='compromise-item'>"Iniciamos com uma imersão profunda no seu desafio. Não pulamos para o código antes de mapear a estratégia e a arquitetura ideal para o seu sucesso."</h3>
-                        <p className='compromise-phase'>Fase 1: Estratégia e Descoberta</p>
-                        <p className='compromise-description'>O alicerce de todo projeto.</p>
+                <div className={styles.compromiseBanner}>
+                    <div className={styles.compromiseCard}>
+                        <RiDoubleQuotesR className={styles.compromiseQuoteIcon} />
+                        <h3 className={styles.compromiseItem}>"Iniciamos com uma imersão profunda no seu desafio. Não pulamos para o código antes de mapear a estratégia e a arquitetura ideal para o seu sucesso."</h3>
+                        <p className={styles.compromisePhase}>Fase 1: Estratégia e Descoberta</p>
+                        <p className={styles.compromiseDescription}>O alicerce de todo projeto.</p>
                     </div>
-                    <div className='compromise-card'>
-                        <RiDoubleQuotesR className="compromise-quote-icon" />
-                        <h3 className='compromise-item'>"Desenvolvimento ágil com ciclos curtos e entregas previsíveis. Você vê o progresso, valida as etapas e tem total visibilidade do produto do início ao fim."</h3>
-                        <p className='compromise-phase'>Fase 2: Desenvolvimento e Colaboração</p>
-                        <p className='compromise-description'>Transparência e qualidade em primeiro lugar.</p>
+                    <div className={styles.compromiseCard}>
+                        <RiDoubleQuotesR className={styles.compromiseQuoteIcon} />
+                        <h3 className={styles.compromiseItem}>"Desenvolvimento ágil com ciclos curtos e entregas previsíveis. Você vê o progresso, valida as etapas e tem total visibilidade do produto do início ao fim."</h3>
+                        <p className={styles.compromisePhase}>Fase 2: Desenvolvimento e Colaboração</p>
+                        <p className={styles.compromiseDescription}>Transparência e qualidade em primeiro lugar.</p>
                     </div>
                 </div>
             </section>
             <PortfolioHighlights projects={portfolioData} />
-            <section className='service-offer fade-in-section'>
-                <p className='title-section-offer'>Pronto para tirar o seu projeto do papel?</p>
-                <p className='subtitle-section-offer'>Vamos cultivar juntos uma solução que transforme o seu negócio.</p>
-                <Link href="/solicitacao" className="solicitacao-cta">Iniciar projeto</Link>
+            <section className={`${styles.serviceOffer} fade-in-section`}>
+                <p className={styles.titleSectionOffer}>Pronto para tirar o seu projeto do papel?</p>
+                <p className={styles.subtitleSectionOffer}>Vamos cultivar juntos uma solução que transforme o seu negócio.</p>
+                <Link href="/solicitacao" className={styles.solicitacaoCta}>Iniciar projeto</Link>
             </section>
         </>
     );

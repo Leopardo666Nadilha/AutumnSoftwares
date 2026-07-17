@@ -2,6 +2,8 @@ import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './PortfolioHighlights.module.css';
+import sections from '../styles/shared/sections.module.css';
+import typography from '../styles/shared/typography.module.css';
 
 function PortfolioCard({ project, index }) {
     const cardRef = useRef(null);
@@ -88,12 +90,12 @@ function PortfolioCard({ project, index }) {
 
 export default function PortfolioHighlights({ projects }) {
     return (
-        <section className={`portfolio-section next-section fade-in-section`}>
+        <section className={`${sections.nextSection} fade-in-section`}>
             <div>
-                <h2 className='title-section-portfolio title-section-about'>
-                    Projetos de <strong className='title-header-portfolio title-header'>Destaque</strong>
+                <h2 className={typography.titleSectionAbout}>
+                    Projetos de <strong className={typography.titleHeader}>Destaque</strong>
                 </h2>
-                <p className='subtitle-section-about'>
+                <p className={typography.subtitleSectionAbout}>
                     Estes são alguns dos projetos que cultivamos com dedicação e excelência.
                 </p>
             </div>
@@ -102,7 +104,7 @@ export default function PortfolioHighlights({ projects }) {
                     <PortfolioCard key={project.id} project={project} index={index} />
                 ))}
             </div>
-            <Link href="/portfolio" className="portfolio-cta">Ver portfólio completo</Link>
+            <Link href="/portfolio" className={styles.portfolioCta}>Ver portfólio completo</Link>
         </section>
     );
 }

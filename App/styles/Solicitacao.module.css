@@ -1,0 +1,407 @@
+/* Estilos exclusivos da página de Solicitação (pages/solicitacao.js) */
+
+.solicitacaoPageTitle {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.solicitacaoPageSubtitle {
+    margin-bottom: 60px;
+}
+
+.solicitacaoPageContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: calc(100vh - 70px);
+}
+
+.solicitacaoFormContainer {
+    width: 100%;
+    max-width: 900px;
+    background-color: color-mix(in srgb, var(--color-background) 95%, #000 5%);
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 60px;
+    border: 1px solid color-mix(in srgb, var(--color-text) 15%, transparent);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.stepIndicatorContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.stepItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    position: relative;
+}
+
+.stepNumber {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: color-mix(in srgb, var(--color-background) 80%, #000 20%);
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    border: 2px solid color-mix(in srgb, var(--color-text) 15%, transparent);
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    z-index: 2;
+}
+
+.stepTitle {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text);
+    opacity: 0.7;
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.stepConnector {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    width: 100%;
+    height: 2px;
+    background-color: color-mix(in srgb, var(--color-text) 15%, transparent);
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.stepItem.active .stepNumber {
+    background-color: var(--color-primary);
+    color: var(--color-text-title);
+    border-color: var(--color-primary);
+}
+
+.stepItem.active .stepTitle {
+    color: var(--color-primary);
+    opacity: 1;
+}
+
+.stepItem.completed .stepNumber {
+    background-color: var(--color-accent);
+    color: var(--color-text-title);
+    border-color: var(--color-accent);
+}
+
+.stepItem.completed .stepTitle {
+    opacity: 1;
+}
+
+.stepItem.completed .stepConnector {
+    background-color: var(--color-accent);
+}
+
+.formStep {
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.formFieldsContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    width: 100%;
+    max-width: 700px;
+    margin-top: 30px;
+}
+
+.formFieldsContainer.singleField {
+    grid-template-columns: 1fr;
+}
+
+.formFieldsContainer.formStepLast {
+    gap: 40px;
+}
+
+.formTextarea {
+    min-height: 147px;
+    resize: vertical;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.formLabel {
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text);
+    opacity: 0.9;
+}
+
+.formInput {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid color-mix(in srgb, var(--color-text) 20%, transparent);
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-size: 16px;
+    font-family: var(--font-family-body);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+select.formInput {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, var(--color-text) 50%), linear-gradient(135deg, var(--color-text) 50%, transparent 50%);
+    background-position: calc(100% - 20px) center, calc(100% - 15px) center;
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+}
+
+select.formInput:focus {
+    background-image: linear-gradient(45deg, transparent 50%, var(--color-primary) 50%), linear-gradient(135deg, var(--color-primary) 50%, transparent 50%);
+}
+
+select.formInput option {
+    background-color: var(--color-background);
+    color: var(--color-text);
+}
+
+.formInput:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 25%, transparent);
+}
+
+.formGroup.hasError .formInput {
+    border-color: #e53e3e;
+}
+
+.formGroup.hasError .formInput:focus {
+    box-shadow: 0 0 0 3px color-mix(in srgb, #e53e3e 25%, transparent);
+}
+
+.formErrorMessage {
+    color: #e53e3e;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.formOptionsGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.formOptionLabel {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--color-text);
+}
+
+.formOptionLabel input[type="radio"],
+.formOptionLabel input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+}
+
+.formOptionText {
+    position: relative;
+    padding-left: 30px;
+}
+
+.formOptionText::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid color-mix(in srgb, var(--color-text) 40%, transparent);
+    background-color: var(--color-background);
+    transition: all 0.2s ease;
+}
+
+.formOptionLabel input[type="radio"] + .formOptionText::before {
+    border-radius: 50%;
+}
+
+.formOptionLabel input[type="checkbox"] + .formOptionText::before {
+    border-radius: 4px;
+}
+
+.formOptionLabel input:checked + .formOptionText::before {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.formOptionLabel input:checked + .formOptionText::after {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    width: 6px;
+    height: 12px;
+    border: solid var(--color-text-title);
+    border-width: 0 2px 2px 0;
+}
+
+.formNote {
+    margin-top: 20px;
+    font-size: 12px;
+    color: var(--color-text);
+    opacity: 0.7;
+}
+
+.formStepTitle {
+    font-size: 24px;
+    color: var(--color-text);
+    margin-bottom: 8px;
+}
+
+.formStepSubtitle {
+    font-size: 16px;
+    color: var(--color-text);
+    opacity: 0.8;
+    max-width: 500px;
+    text-align: center;
+}
+
+.formNavigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    border-top: 1px solid color-mix(in srgb, var(--color-text) 15%, transparent);
+    padding-top: 30px;
+}
+
+.formButton {
+    all: unset;
+    cursor: pointer;
+    background-color: var(--color-primary);
+    color: var(--color-text-title);
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.formButton:hover {
+    transform: scale(1.05);
+}
+
+.formButton:disabled {
+    background-color: color-mix(in srgb, var(--color-accent) 50%, transparent);
+    cursor: not-allowed;
+    transform: none;
+}
+
+.formButtonSecondary {
+    background-color: var(--color-accent);
+}
+
+.formNavigation > :only-child {
+    margin-left: auto;
+}
+
+.submissionFeedbackContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+    min-height: calc(100vh - 200px);
+    max-width: 700px;
+}
+
+.submissionFeedbackIcon {
+    font-size: 80px;
+    color: var(--color-accent);
+    margin-bottom: 20px;
+}
+
+.submissionFeedbackTitle {
+    font-family: var(--font-family-headings);
+    font-size: 32px;
+    color: var(--color-text);
+    margin-bottom: 15px;
+}
+
+.submissionFeedbackText {
+    font-size: 18px;
+    line-height: 1.7;
+    opacity: 0.9;
+    margin-bottom: 30px;
+}
+
+.directContactSection {
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+    padding: 40px;
+    margin-bottom: 80px;
+    background-color: color-mix(in srgb, var(--color-background) 95%, #000 5%);
+    border: 1px solid color-mix(in srgb, var(--color-text) 15%, transparent);
+    border-radius: 20px;
+}
+
+.directContactTitle {
+    font-family: var(--font-family-headings);
+    font-size: 22px;
+    color: var(--color-text);
+    margin-bottom: 15px;
+}
+
+.directContactText {
+    max-width: 600px;
+    margin: 0 auto 25px auto;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.directContactInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.contactLink {
+    font-weight: 600;
+    color: var(--color-primary);
+    transition: filter 0.2s ease;
+}
+
+.contactLink:hover {
+    filter: brightness(1.1);
+}
+
+@media (max-width: 1024px) {
+    .formFieldsContainer {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .solicitacaoFormContainer {
+        padding: 20px;
+    }
+}

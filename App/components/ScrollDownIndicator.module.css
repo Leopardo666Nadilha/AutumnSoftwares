@@ -1,0 +1,26 @@
+/*
+  @keyframes local (duplicado do mesmo em styles/Home.module.css):
+  CSS Modules hasheia o nome usado em "animation:" mesmo sem @keyframes
+  local, então uma referência a um keyframe definido só em outro
+  arquivo (ou no global) nunca casa com nada e a animação não roda.
+*/
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.scrollDownIndicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 2;
+    animation: fadeInUp 1s ease-out 1.2s forwards;
+}

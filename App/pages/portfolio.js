@@ -1,4 +1,6 @@
 import { useEffect } from 'react';
+import styles from '../styles/Portfolio.module.css';
+import typography from '../styles/shared/typography.module.css';
 
 function PortfolioPage({ projects }) {
     useEffect(() => {
@@ -18,16 +20,37 @@ function PortfolioPage({ projects }) {
 
         return () => sections.forEach(section => observer.unobserve(section));
     }, []);
+
+    useEffect(() => {
+        const hash = window.location.hash.replace('#', '');
+        if (!hash) return;
+
+        const target = document.getElementById(hash);
+        if (!target) return;
+
+        // Torna o card visível imediatamente (sem esperar o fade-in-section
+        // entrar em cena) e rola até ele antes de tocar o pulso.
+        target.classList.add('is-visible');
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        target.classList.add(styles.pulse);
+
+        const timeout = setTimeout(() => {
+            target.classList.remove(styles.pulse);
+        }, 1700);
+
+        return () => clearTimeout(timeout);
+    }, []);
+
     return (
         <div style={{ padding: '20px 40px' }}>
-            <h1 className='portfolio-section-title title-section-about fade-in-section'>Estudos de Caso & Conceitos</h1>
-            <p className='portfolio-section-subtitle subtitle-section-about fade-in-section'>Conheça nossa forma de pensar e nossa excelência técnica em projetos-conceito realistas.</p>
+            <h1 className={`${styles.portfolioSectionTitle} ${typography.titleSectionAbout} fade-in-section`}>Estudos de Caso & Conceitos</h1>
+            <p className={`${styles.portfolioSectionSubtitle} ${typography.subtitleSectionAbout} fade-in-section`}>Conheça nossa forma de pensar e nossa excelência técnica em projetos-conceito realistas.</p>
             {projects.length === 0 ? (
                 <p>Nenhum projeto encontrado.</p>
             ) : (
-                <ul className='projects-portfolio'>
-                    {projects.map((project) => ( 
-                        <li key={project.id} id={project.id.toString()} className="portfolio-list-item fade-in-section">
+                <ul className={styles.projectsPortfolio}>
+                    {projects.map((project) => (
+                        <li key={project.id} id={project.id.toString()} className={`${styles.portfolioListItem} fade-in-section`}>
                             {/* Adiciona um link para o repositório no GitHub, se existir */}
                             <h2>
                                 {project.url ? (
@@ -36,10 +59,10 @@ function PortfolioPage({ projects }) {
                                     project.title
                                 )}
                             </h2>
-                            <p>{project.body}</p>                            
+                            <p>{project.body}</p>
                             {/* Adiciona o link para o projeto ao vivo (deploy) */}
                             {project.liveUrl && (
-                                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="portfolio-button-live portfolio-button">
+                                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className={`${styles.portfolioButtonLive} ${styles.portfolioButton}`}>
                                     Ver projeto ao vivo <span style={{ marginLeft: '5px' }}>🚀</span>
                                 </a>
                             )}
@@ -66,7 +89,7 @@ const customProjectDetails = {
     }
 };
 
-// Lista dos repositórios que você quer que apareçam no portfólio.
+// Lista dos repositórios no portfólio.
 const portfolioRepoNames = [
     'PresalePrimeCare',
     'GremioForcaJovem',
@@ -102,7 +125,10 @@ export async function getStaticProps() {
         .map(repo => {
             const customDetails = customProjectDetails[repo.name];
             return {
-                id: repo.id,
+                // Usa o nome do repositório (slug estável) como id, não o repo.id
+                // numérico do GitHub — é esse slug que os links de destaque da Home
+                // usam em /portfolio#slug, então precisa bater exatamente.
+                id: repo.name,
                 title: customDetails?.title || repo.name, // Usa o título customizado ou o nome do repo
                 body: customDetails?.body || repo.description, // Usa o body customizado ou a descrição do repo
                 url: repo.html_url,

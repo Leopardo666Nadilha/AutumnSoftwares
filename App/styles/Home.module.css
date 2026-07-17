@@ -1,0 +1,255 @@
+/* Estilos exclusivos da página inicial (pages/index.js) */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.destaqueTitle {
+    color: #D69E2E;
+}
+
+.heroSection {
+    height: calc(100vh - 70px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-align: center;
+}
+
+.heroOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+    z-index: 1;
+}
+
+.heroContent h1 {
+    font-size: 4rem;
+    color: var(--color-text-title);
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 0.5s forwards;
+}
+
+.heroContent p {
+    font-size: 1.25rem;
+    color: #EAE6E3;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 0.8s forwards;
+}
+
+.heroButtons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 1s forwards;
+}
+
+.heroCtaPrimary {
+    background-color: #D69E2E;
+    color: #2D2B29;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    min-width: 280px;
+    text-align: center;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.heroCtaPrimary:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+.heroCtaSecondary {
+    background-color: var(--color-button-background);
+    color: var(--color-button-text);
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    min-width: 280px;
+    text-align: center;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.heroCtaSecondary:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+}
+
+.compromiseContainer {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('/section-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 500px;
+    padding: 60px 40px;
+}
+
+.titleSectionCompromise {
+    font-family: var(--font-family-body);
+    color: var(--color-text-title);
+    font-size: 36px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.titleCompromise {
+    color: var(--color-text-compromise);
+}
+
+.compromiseBanner {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 40px;
+    margin-top: 70px;
+}
+
+.compromiseCard {
+    flex: 1;
+    max-width: 420px;
+    text-align: left;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 20px;
+    background-color: color-mix(in srgb, var(--color-background) 95%, #000 5%);
+    padding: 45px;
+    padding-top: 60px;
+    border: 2px solid transparent;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.compromiseCard:hover {
+    transform: scale(1.05);
+    border-color: var(--color-primary);
+    box-shadow: 0 10px 25px color-mix(in srgb, var(--color-text) 15%, transparent);
+}
+
+.compromiseCard:hover .compromiseQuoteIcon {
+    transform: translateY(-5px) scale(1.05);
+}
+
+.compromiseQuoteIcon {
+    position: absolute;
+    top: 5px;
+    left: 36px;
+    font-size: 3rem;
+    color: var(--color-text-compromise);
+    z-index: 0;
+    transition: transform 0.3s ease;
+}
+
+.compromisePhase {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-text-compromise);
+    margin-top: 10px;
+}
+
+.compromiseItem {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    font-style: italic;
+    padding-bottom: 15px;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-text) 15%, transparent);
+    margin-bottom: 10px;
+}
+
+.compromiseDescription {
+    font-size: 0.9rem;
+    color: var(--color-text);
+}
+
+.serviceOffer {
+    padding: 80px 40px;
+    text-align: center;
+    color: var(--color-text-title);
+    background: linear-gradient(90deg, var(--color-primary), #D69E2E);
+}
+
+.serviceOffer p {
+    line-height: 1.4;
+    max-width: 700px;
+    margin: 0 auto 10px auto;
+}
+
+.titleSectionOffer {
+    font-family: var(--font-family-body);
+    font-size: 36px;
+}
+
+.subtitleSectionOffer {
+    font-size: 18px;
+}
+
+.solicitacaoCta {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 15px 35px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 16px;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    transition: transform 0.2s ease, filter 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.solicitacaoCta:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 1024px) {
+    .heroContent h1 {
+        font-size: 3rem;
+    }
+
+    .heroContent p {
+        font-size: 1.1rem;
+    }
+
+    .compromiseBanner {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .compromiseCard {
+        max-width: 500px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .heroContent h1 {
+        font-size: 2.5rem;
+    }
+
+    .heroButtons {
+        flex-direction: column;
+    }
+
+    .heroCtaPrimary,
+    .heroCtaSecondary {
+        width: 100%;
+        max-width: 300px;
+    }
+}

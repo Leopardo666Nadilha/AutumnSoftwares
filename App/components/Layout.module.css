@@ -1,0 +1,196 @@
+/* Estilos exclusivos do Header/Footer (components/Layout.js) */
+
+.titleFull {
+    font-family: var(--font-family-body);
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.mainHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    transition: background-color 0.3s ease;
+    background-color: color-mix(in srgb, var(--color-background) 85%, transparent);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+
+    border-bottom: 1px solid color-mix(in srgb, var(--color-text) 15%, transparent);
+}
+
+.mainNav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navLink {
+    margin-right: 25px;
+    transition: color 0.3s ease;
+    position: relative;
+    padding-bottom: 5px;
+    font-size: 16px;
+}
+
+.navLink:hover {
+    color: var(--color-primary);
+}
+
+.navLink.active {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.navLinksGroup,
+.navActionsGroup {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.ctaLink {
+    background-color: var(--color-primary);
+    color: var(--color-text-title);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    display: inline-block;
+    transition: transform 0.2s ease-in-out, background-color 0.3s ease, color 0.3s ease;
+}
+
+.ctaLink:hover {
+    transform: scale(1.05);
+}
+
+.mainFooter {
+    padding: 60px 40px;
+    background-color: var(--color-footer);
+    color: var(--color-button-text);
+    border-top: 1px solid color-mix(in srgb, var(--color-button-text) 15%, transparent);
+}
+
+.footerContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.footerColumn {
+    flex: 1;
+    min-width: 250px;
+    font-weight: 300;
+}
+
+.footerColumn .titleFull {
+    font-size: 20px;
+}
+
+/* Versão da titleHeader compartilhada, mas com o acento de cor do rodapé.
+   Fica com estilo próprio (em vez de sobrepor o módulo de tipografia
+   compartilhado) pra não depender da ordem de carregamento entre módulos CSS. */
+.footerBrandHeader {
+    font-family: var(--font-family-body);
+    font-weight: 800;
+    color: var(--color-title-footer);
+}
+
+.copyright {
+    margin-top: 40px;
+    padding-top: 40px;
+    font-size: 14px;
+    font-weight: 300;
+    text-align: center;
+    border-top: 1px solid color-mix(in srgb, var(--color-button-text) 15%, transparent);
+}
+
+.footerHeading {
+    font-family: var(--font-family-body);
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    color: var(--color-text-title);
+}
+
+#footer-text {
+    margin-top: 15px;
+}
+
+.footerLinks li,
+.footerContact li {
+    margin-bottom: 10px;
+}
+
+.footerLinks a,
+.footerContact a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.footerLinks a:hover,
+.footerContact a:hover {
+    opacity: 1;
+}
+
+@media (max-width: 1024px) {
+    .mainHeader {
+        padding: 15px 20px;
+    }
+
+    .navLink {
+        margin-right: 15px;
+        font-size: 15px;
+    }
+
+    .ctaLink {
+        padding: 8px 16px;
+        font-size: 15px;
+    }
+
+    .footerContainer {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footerColumn:first-child {
+        max-width: 450px;
+        margin: 0 auto;
+    }
+
+    .footerLinks a,
+    .footerContact a {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .mainHeader {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 15px;
+        gap: 20px;
+    }
+
+    .mainNav {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .navActionsGroup {
+        gap: 15px;
+    }
+}

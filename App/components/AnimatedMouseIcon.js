@@ -1,7 +1,9 @@
+import styles from './AnimatedMouseIcon.module.css';
+
 const AnimatedMouseIcon = () => {
   return (
-    <div className="mouse-icon">
-      <div className="mouse-scroll-wheel"></div>
+    <div className={styles.mouseIcon}>
+      <div className={styles.mouseScrollWheel}></div>
     </div>
   );
 };

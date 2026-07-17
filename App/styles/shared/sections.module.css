@@ -1,0 +1,88 @@
+/*
+  Padrão de "seção com benefícios em cards", reaproveitado na Home
+  (seção "Software sob demanda") e na Sobre (seção "Parceria Real").
+*/
+
+.nextSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 100px 40px;
+    min-height: 500px;
+    gap: 20px;
+    border-radius: 12px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.benefitsContainer {
+    display: flex;
+    justify-content: space-around;
+    gap: 40px;
+    margin-top: 50px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.benefitItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    max-width: 400px;
+    background-color: color-mix(in srgb, var(--color-background) 95%, #000 5%);
+    border-radius: 20px;
+    padding: 2em 3em;
+    border: 2px solid transparent;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.benefitItem:hover {
+    transform: scale(1.05);
+    border-color: var(--color-primary);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.benefitIcon {
+    font-size: 3rem;
+    color: var(--color-primary);
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.benefitItem:hover .benefitIcon {
+    transform: translateY(-10px) scale(1.1);
+}
+
+.titleBenefits {
+    font-family: var(--font-family-headings);
+    font-size: 1.5rem;
+    color: var(--color-text);
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.textBenefits {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+@media (max-width: 1024px) {
+    .benefitsContainer {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .benefitItem {
+        max-width: 500px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .nextSection {
+        padding: 60px 20px;
+    }
+}
