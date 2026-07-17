@@ -1,3 +1,27 @@
+/*
+  Global CSS — mantém APENAS:
+  1. Variáveis de tema (:root / :root.dark)
+  2. Reset padrão (CSS reset clássico + box-sizing)
+  3. Regras base de elementos HTML (html, body, headings, a)
+  4. Uma exceção documentada abaixo, que precisa ficar global por ser
+     referenciada fora do escopo de um único módulo CSS.
+
+  Importante: @keyframes NÃO entra aqui, mesmo quando usado por mais de
+  um módulo. CSS Modules hasheia o nome usado em "animation:" mesmo sem
+  um @keyframes local correspondente, então uma referência a um keyframe
+  definido só aqui nunca casaria com nada dentro do módulo. Cada módulo
+  que precisa de uma animação declara o próprio @keyframes localmente
+  (ex: Home.module.css e ScrollDownIndicator.module.css duplicam o
+  mesmo fadeInUp de propósito).
+
+  Todo o resto (header/footer, hero, cards, formulário, etc.) vive em
+  CSS Modules ao lado de cada componente/página:
+    - components/*.module.css
+    - styles/*.module.css (uma página cada)
+    - styles/shared/*.module.css (átomos usados por 2+ páginas: tipografia
+      e o padrão "seção com cards de benefício")
+*/
+
 :root {
     --color-background: #F5F2EC;        /* Bege puxado para o "creme" com toque de calor  */
     --color-text: #3E3A39;              /* Grafite "Café" (Escuro e quente) */
@@ -75,12 +99,14 @@ table {
 html {
     background-color: var(--color-background);
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
     font-family: var(--font-family-body);
     transition: background-color 0.3s ease, color 0.3s ease;
     color: var(--color-text);
+    overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {

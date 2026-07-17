@@ -26,6 +26,24 @@
     border-bottom: 1px solid color-mix(in srgb, var(--color-text) 15%, transparent);
 }
 
+.brandRow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Cópia "de bolso" do toggle de tema, escondida por padrão — só aparece
+   ao lado do título abaixo de 480px (media query no fim do arquivo). */
+.mobileThemeToggle {
+    display: none;
+}
+
+/* Posição normal do toggle, dentro de .navActionsGroup */
+.desktopThemeToggle {
+    display: flex;
+    align-items: center;
+}
+
 .mainNav {
     display: flex;
     align-items: center;
@@ -64,6 +82,7 @@
     font-weight: 600;
     font-size: 16px;
     display: inline-block;
+    text-align: center;
     transition: transform 0.2s ease-in-out, background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -192,5 +211,43 @@
 
     .navActionsGroup {
         gap: 15px;
+    }
+}
+
+/*
+  Abaixo de ~410px, os 3 links + botão CTA + toggle de tema não cabem
+  mais numa linha só dentro de .mainNav e o conteúdo passava da largura
+  da viewport, causando overflow horizontal na página inteira.
+
+  Em vez de quebrar tudo em duas linhas centralizadas, o toggle de
+  tema sobe para o lado do título (.brandRow) — ele é renderizado duas
+  vezes no JSX (components/Layout.js): uma cópia fica escondida aqui
+  (.desktopThemeToggle) e a cópia ao lado do título aparece
+  (.mobileThemeToggle). Isso libera espaço suficiente pra manter o
+  restante (links + CTA) numa linha só.
+*/
+@media (max-width: 480px) {
+    .brandRow {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .desktopThemeToggle {
+        display: none;
+    }
+
+    .mobileThemeToggle {
+        display: flex;
+        align-items: center;
+    }
+
+    .navLink {
+        margin-right: 10px;
+        font-size: 14px;
+    }
+
+    .ctaLink {
+        padding: 6px 12px;
+        font-size: 14px;
     }
 }

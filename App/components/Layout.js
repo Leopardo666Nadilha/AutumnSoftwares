@@ -11,8 +11,13 @@ const Header = () => {
 
     return (
         <header className={styles.mainHeader}>
-            <nav>
+            <nav className={styles.brandRow}>
                 <Link href="/" className={styles.titleFull}><strong className={typography.titleHeader}>Autumn</strong> Softwares</Link>
+                {/* Só aparece abaixo de 480px — sobe pro lado do título pra
+                    sobrar espaço e o resto do nav caber numa linha só. */}
+                <span className={styles.mobileThemeToggle}>
+                    <ThemeToggleButton />
+                </span>
             </nav>
             <nav className={styles.mainNav}>
                 <div className={styles.navLinksGroup}>
@@ -23,7 +28,9 @@ const Header = () => {
                 </div>
                 <div className={styles.navActionsGroup}>
                     <Link href="/solicitacao" className={styles.ctaLink}>Solicitar Projeto</Link>
-                    <ThemeToggleButton />
+                    <span className={styles.desktopThemeToggle}>
+                        <ThemeToggleButton />
+                    </span>
                 </div>
             </nav>
         </header>
