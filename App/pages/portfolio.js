@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
+import Head from 'next/head';
 import styles from '../styles/Portfolio.module.css';
 import typography from '../styles/shared/typography.module.css';
+import { SITE_URL } from '../lib/siteConfig';
 
 function PortfolioPage({ projects }) {
     useEffect(() => {
@@ -43,6 +45,14 @@ function PortfolioPage({ projects }) {
 
     return (
         <div style={{ padding: '20px 40px' }}>
+            <Head>
+                <title>Portfólio | Autumn Softwares</title>
+                <meta name="description" content="Estudos de caso e projetos desenvolvidos pela Autumn Softwares: sistemas web, automações e soluções sob medida." />
+                <meta property="og:title" content="Portfólio | Autumn Softwares" />
+                <meta property="og:description" content="Conheça nossa forma de pensar e nossa excelência técnica em projetos reais e conceituais." />
+                <meta property="og:url" content={`${SITE_URL}/portfolio`} />
+                <link rel="canonical" href={`${SITE_URL}/portfolio`} />
+            </Head>
             <h1 className={`${styles.portfolioSectionTitle} ${typography.titleSectionAbout} fade-in-section`}>Estudos de Caso & Conceitos</h1>
             <p className={`${styles.portfolioSectionSubtitle} ${typography.subtitleSectionAbout} fade-in-section`}>Conheça nossa forma de pensar e nossa excelência técnica em projetos-conceito realistas.</p>
             {projects.length === 0 ? (
@@ -54,7 +64,7 @@ function PortfolioPage({ projects }) {
                             {/* Adiciona um link para o repositório no GitHub, se existir */}
                             <h2>
                                 {project.url ? (
-                                    <a href={project.url} target="_blank" rel="noopener noreferrer">{project.title}</a>
+                                    <a href={project.url} target="_blank" rel="noopener noreferrer" aria-label={`Ver repositório de ${project.title} no GitHub (abre em nova guia)`}>{project.title}</a>
                                 ) : (
                                     project.title
                                 )}
@@ -62,8 +72,8 @@ function PortfolioPage({ projects }) {
                             <p>{project.body}</p>
                             {/* Adiciona o link para o projeto ao vivo (deploy) */}
                             {project.liveUrl && (
-                                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className={`${styles.portfolioButtonLive} ${styles.portfolioButton}`}>
-                                    Ver projeto ao vivo <span style={{ marginLeft: '5px' }}>🚀</span>
+                                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className={`${styles.portfolioButtonLive} ${styles.portfolioButton}`} aria-label={`Ver ${project.title} ao vivo (abre em nova guia)`}>
+                                    Ver projeto ao vivo <span style={{ marginLeft: '5px' }} aria-hidden="true">🚀</span>
                                 </a>
                             )}
                         </li>

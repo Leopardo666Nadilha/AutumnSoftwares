@@ -1,10 +1,12 @@
 import Image from 'next/image';
+import Head from 'next/head';
 import aboutBg from '../public/about-bg.jpg';
 import { PiHandshake, PiChatCircleDots, PiCrosshair } from 'react-icons/pi';
 import { useEffect } from 'react';
 import styles from '../styles/Sobre.module.css';
 import sections from '../styles/shared/sections.module.css';
 import typography from '../styles/shared/typography.module.css';
+import { SITE_URL } from '../lib/siteConfig';
 
 export default function AboutPage() {
     useEffect(() => {
@@ -26,9 +28,17 @@ export default function AboutPage() {
     }, []);
     return (
         <div className={styles.aboutPageContent}>
+            <Head>
+                <title>Sobre nós | Autumn Softwares</title>
+                <meta name="description" content="Conheça a Autumn Softwares: parceria real, transparência contínua e foco no valor entregue ao seu negócio." />
+                <meta property="og:title" content="Sobre a Autumn Softwares" />
+                <meta property="og:description" content="Nossa filosofia não é apenas entregar código, mas cultivar uma parceria estratégica com o seu negócio." />
+                <meta property="og:url" content={`${SITE_URL}/sobre`} />
+                <link rel="canonical" href={`${SITE_URL}/sobre`} />
+            </Head>
             <section className={`${styles.aboutIntroSection} fade-in-section`}>
                 <div className={styles.aboutTextBlock}>
-                    <h2 className={typography.titleSectionAbout}>Amadurecendo ideias desde <strong className={typography.titleHeader}>2025</strong></h2>
+                    <h1 className={typography.titleSectionAbout}>Amadurecendo ideias desde <strong className={typography.titleHeader}>2025</strong></h1>
                     <p className={typography.subtitleSectionAbout}>Nossa filosofia não é apenas entregar código, mas cultivar uma parceria estratégica para entender o problema a fundo.</p>
                 </div>
                 <div className={styles.aboutImageContainer}>
@@ -45,17 +55,17 @@ export default function AboutPage() {
             {/* Seção de benefícios/valores reutilizada da página inicial */}
             <section className={`${sections.benefitsContainer} ${styles.aboutBenefits} fade-in-section`}>
                 <div className={sections.benefitItem}>
-                    <PiHandshake className={sections.benefitIcon} />
+                    <PiHandshake className={sections.benefitIcon} aria-hidden="true" />
                     <h3 className={sections.titleBenefits}>Parceria Real</h3>
                     <p className={sections.textBenefits}>Não somos apenas fornecedores; somos uma extensão da sua equipe. Trabalhamos lado a lado para garantir que a solução reflita sua visão e cultura.</p>
                 </div>
                 <div className={sections.benefitItem}>
-                    <PiChatCircleDots className={sections.benefitIcon} />
+                    <PiChatCircleDots className={sections.benefitIcon} aria-hidden="true" />
                     <h3 className={sections.titleBenefits}>Transparência Contínua</h3>
                     <p className={sections.textBenefits}>Comunicação clara e ciclos de feedback abertos. Você sempre sabe o que está acontecendo e tem visibilidade total do progresso, sem surpresas.</p>
                 </div>
                 <div className={sections.benefitItem}>
-                    <PiCrosshair className={sections.benefitIcon} />
+                    <PiCrosshair className={sections.benefitIcon} aria-hidden="true" />
                     <h3 className={sections.titleBenefits}>Foco no Valor</h3>
                     <p className={sections.textBenefits}>Mais do que código, entregamos o resultado que seu negócio precisa. Nosso sucesso é medido pelo impacto real e positivo que o software traz para sua operação.</p>
                 </div>

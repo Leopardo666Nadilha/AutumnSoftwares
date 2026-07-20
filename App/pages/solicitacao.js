@@ -2,9 +2,11 @@ import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { PiCheckCircle } from 'react-icons/pi';
 import Link from 'next/link';
+import Head from 'next/head';
 import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import styles from '../styles/Solicitacao.module.css';
 import typography from '../styles/shared/typography.module.css';
+import { SITE_URL } from '../lib/siteConfig';
 
 const steps = ["Seus Dados", "O Desafio", "Detalhes Técnicos", "Escopo & Prazos"];
 
@@ -286,8 +288,8 @@ function SolicitacaoForm() {
                         <p className={styles.formStepSubtitle}>Suas respostas nos ajudam a calibrar nossa proposta inicial.</p>
                         <div className={`${styles.formFieldsContainer} ${styles.singleField} ${styles.formStepLast}`}>
                             {/* Faixa de Investimento */}
-                            <div className={styles.formGroup}>
-                                <label className={styles.formLabel}>Qual é a sua faixa de investimento para este projeto? *</label>
+                            <fieldset className={styles.formGroup}>
+                                <legend className={styles.formLabel}>Qual é a sua faixa de investimento para este projeto? *</legend>
                                 <div className={styles.formOptionsGroup}>
                                     {['Até R$ 5.000', 'R$ 5.000 - R$ 15.000', 'R$ 15.000 - R$ 30.000', 'Acima de R$ 30.000', 'Ainda não tenho um orçamento / Prefiro discutir'].map(option => (
                                         <label key={option} className={styles.formOptionLabel}>
@@ -296,11 +298,11 @@ function SolicitacaoForm() {
                                         </label>
                                     ))}
                                 </div>
-                            </div>
+                            </fieldset>
 
                             {/* Urgência */}
-                            <div className={styles.formGroup}>
-                                <label className={styles.formLabel}>Qual é a urgência para este projeto? *</label>
+                            <fieldset className={styles.formGroup}>
+                                <legend className={styles.formLabel}>Qual é a urgência para este projeto? *</legend>
                                 <div className={styles.formOptionsGroup}>
                                     {['Muito Urgente (Preciso começar nos próximos 30 dias)', 'Flexível (Posso começar em 1-3 meses)', 'Planejamento (Início em 3-6 meses)', 'Apenas Pesquisando (Sem prazo definido)'].map(option => (
                                         <label key={option} className={styles.formOptionLabel}>
@@ -309,11 +311,11 @@ function SolicitacaoForm() {
                                         </label>
                                     ))}
                                 </div>
-                            </div>
+                            </fieldset>
 
                             {/* Serviços */}
-                            <div className={styles.formGroup}>
-                                <label className={styles.formLabel}>Quais serviços você já sabe que vai precisar? *</label>
+                            <fieldset className={styles.formGroup}>
+                                <legend className={styles.formLabel}>Quais serviços você já sabe que vai precisar? *</legend>
                                 <div className={styles.formOptionsGroup}>
                                     {[
                                         { name: 'website', text: 'Desenvolvimento de Website / Landing Page' },
@@ -328,7 +330,7 @@ function SolicitacaoForm() {
                                         </label>
                                     ))}
                                 </div>
-                            </div>
+                            </fieldset>
                         </div>
                         <p className={styles.formNote}>* Campos obrigatórios</p>
                     </div>
@@ -341,8 +343,11 @@ function SolicitacaoForm() {
     if (submissionStatus === 'success') {
         return (
             <section ref={pageTopRef} className={styles.solicitacaoPageContent}>
+                <Head>
+                    <title>Solicitar Projeto | Autumn Softwares</title>
+                </Head>
                 <div className={`${styles.submissionFeedbackContainer} fade-in-section is-visible`}>
-                    <PiCheckCircle className={styles.submissionFeedbackIcon} />
+                    <PiCheckCircle className={styles.submissionFeedbackIcon} aria-hidden="true" />
                     <h2 className={styles.submissionFeedbackTitle}>Projeto enviado com sucesso!</h2>
                     <p className={styles.submissionFeedbackText}>
                         Obrigado por compartilhar sua ideia conosco. Nossa equipe analisará as informações e entrará em contato em breve para discutir os próximos passos.
@@ -355,6 +360,14 @@ function SolicitacaoForm() {
 
     return (
         <section ref={pageTopRef} className={styles.solicitacaoPageContent}>
+            <Head>
+                <title>Solicitar Projeto | Autumn Softwares</title>
+                <meta name="description" content="Conte sobre o seu projeto e receba uma proposta personalizada da Autumn Softwares." />
+                <meta property="og:title" content="Solicitar Projeto | Autumn Softwares" />
+                <meta property="og:description" content="Vamos cultivar juntos o seu próximo projeto de software." />
+                <meta property="og:url" content={`${SITE_URL}/solicitacao`} />
+                <link rel="canonical" href={`${SITE_URL}/solicitacao`} />
+            </Head>
             <h1 className={`${styles.solicitacaoPageTitle} ${typography.titleSectionAbout} fade-in-section`}>Vamos cultivar o seu <strong className={typography.titleHeader}>próximo projeto?</strong></h1>
             <p className={`${styles.solicitacaoPageSubtitle} ${typography.subtitleSectionAbout} fade-in-section`}>Suas respostas nos ajudam a preparar uma análise mais precisa. Após o envio, entraremos em contato para seguir com o projeto.</p>
 
@@ -416,7 +429,7 @@ function SolicitacaoForm() {
                     <a href="mailto:softwares.autumn@gmail.com" className={styles.contactLink}>
                         E-mail: softwares.autumn@gmail.com
                     </a>
-                    <a href="https://wa.me/5547991739602" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
+                    <a href="https://wa.me/5547991739602" target="_blank" rel="noopener noreferrer" className={styles.contactLink} aria-label="WhatsApp: (47) 99173-9602 (abre em nova guia)">
                         WhatsApp: (47) 99173-9602
                     </a>
                 </div>

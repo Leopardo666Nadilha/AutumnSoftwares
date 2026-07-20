@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import Head from 'next/head';
 import ScrollDownIndicator from '../components/ScrollDownIndicator';
 import PortfolioHighlights from '../components/PortfolioHighlights';
 import Link from 'next/link';
@@ -8,6 +9,7 @@ import { RiDoubleQuotesR } from 'react-icons/ri';
 import styles from '../styles/Home.module.css';
 import sections from '../styles/shared/sections.module.css';
 import typography from '../styles/shared/typography.module.css';
+import { SITE_URL } from '../lib/siteConfig';
 import mainBg from '../public/main-bg.jpg';
 import portfolioPreview2 from '../public/portfolio-preview-2.jpg';
 import portfolioPreview3 from '../public/portfolio-preview-3.jpg';
@@ -57,12 +59,21 @@ export default function HomePage() {
 
     return (
         <>
+            <Head>
+                <title>Autumn Softwares | Software sob medida, do zero à entrega</title>
+                <meta name="description" content="Desenvolvimento de software sob demanda: aplicações web, mobile e automações personalizadas, com processo transparente do início ao fim." />
+                <meta property="og:title" content="Autumn Softwares | Software sob medida" />
+                <meta property="og:description" content="Transformamos ideias em soluções digitais robustas e personalizadas." />
+                <meta property="og:url" content={SITE_URL} />
+                <link rel="canonical" href={SITE_URL} />
+            </Head>
             {/*Seção que terá a imagem de fundo */}
             <section className={styles.heroSection}>
                 <Image
                     src={mainBg}
                     alt="Folhas de outono em primeiro plano com um prédio moderno ao fundo"
                     fill
+                    sizes="100vw"
                     quality={75}
                     placeholder="blur"
                     priority
@@ -89,17 +100,17 @@ export default function HomePage() {
                 </div>
                 <div className={sections.benefitsContainer}>
                     <div className={sections.benefitItem}>
-                        <PiCompass className={sections.benefitIcon} />
+                        <PiCompass className={sections.benefitIcon} aria-hidden="true" />
                         <h3 className={sections.titleBenefits}>Maturidade técnica</h3>
                         <p className={sections.textBenefits}>Antes da primeira linha de código, mergulhamos no seu negócio. Entendemos seu desafio para desenhar a arquitetura exata que sua operação precisa.</p>
                     </div>
                     <div className={sections.benefitItem}>
-                        <PiClock className={sections.benefitIcon} />
+                        <PiClock className={sections.benefitIcon} aria-hidden="true" />
                         <h3 className={sections.titleBenefits}>Entrega pontual</h3>
                         <p className={sections.textBenefits}>Prazos definidos e cumpridos. Como os ciclos do outono, nossas entregas são previsíveis e transparentes.</p>
                     </div>
                     <div className={sections.benefitItem}>
-                        <PiCode className={sections.benefitIcon} />
+                        <PiCode className={sections.benefitIcon} aria-hidden="true" />
                         <h3 className={sections.titleBenefits}>Código limpo</h3>
                         <p className={sections.textBenefits}>Cada linha de código é escrita pensando em manutenibilidade e performance a longo prazo.</p>
                     </div>
@@ -111,13 +122,13 @@ export default function HomePage() {
                 </div>
                 <div className={styles.compromiseBanner}>
                     <div className={styles.compromiseCard}>
-                        <RiDoubleQuotesR className={styles.compromiseQuoteIcon} />
+                        <RiDoubleQuotesR className={styles.compromiseQuoteIcon} aria-hidden="true" />
                         <h3 className={styles.compromiseItem}>"Iniciamos com uma imersão profunda no seu desafio. Não pulamos para o código antes de mapear a estratégia e a arquitetura ideal para o seu sucesso."</h3>
                         <p className={styles.compromisePhase}>Fase 1: Estratégia e Descoberta</p>
                         <p className={styles.compromiseDescription}>O alicerce de todo projeto.</p>
                     </div>
                     <div className={styles.compromiseCard}>
-                        <RiDoubleQuotesR className={styles.compromiseQuoteIcon} />
+                        <RiDoubleQuotesR className={styles.compromiseQuoteIcon} aria-hidden="true" />
                         <h3 className={styles.compromiseItem}>"Desenvolvimento ágil com ciclos curtos e entregas previsíveis. Você vê o progresso, valida as etapas e tem total visibilidade do produto do início ao fim."</h3>
                         <p className={styles.compromisePhase}>Fase 2: Desenvolvimento e Colaboração</p>
                         <p className={styles.compromiseDescription}>Transparência e qualidade em primeiro lugar.</p>
@@ -126,7 +137,7 @@ export default function HomePage() {
             </section>
             <PortfolioHighlights projects={portfolioData} />
             <section className={`${styles.serviceOffer} fade-in-section`}>
-                <p className={styles.titleSectionOffer}>Pronto para tirar o seu projeto do papel?</p>
+                <h2 className={styles.titleSectionOffer}>Pronto para tirar o seu projeto do papel?</h2>
                 <p className={styles.subtitleSectionOffer}>Vamos cultivar juntos uma solução que transforme o seu negócio.</p>
                 <Link href="/solicitacao" className={styles.solicitacaoCta}>Iniciar projeto</Link>
             </section>

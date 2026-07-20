@@ -307,6 +307,14 @@ select.formInput option {
     transform: scale(1.05);
 }
 
+/* "all: unset" acima também remove o outline padrão de foco do teclado —
+   sem isso, um usuário navegando por Tab perde a referência visual de
+   qual botão está selecionado. Restaura um indicador de foco visível. */
+.formButton:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
 .formButton:disabled {
     background-color: color-mix(in srgb, var(--color-accent) 50%, transparent);
     cursor: not-allowed;

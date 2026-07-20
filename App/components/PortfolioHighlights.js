@@ -80,7 +80,7 @@ function PortfolioCard({ project, index }) {
                     <h3 className={styles.title}>{project.title}</h3>
                     <p className={styles.description}>{project.description}</p>
                     <Link href={`/portfolio#${project.id}`} className={styles.button}>
-                        Ver detalhes <span className={styles.arrow}>→</span>
+                        Ver detalhes <span className={styles.arrow} aria-hidden="true">→</span>
                     </Link>
                 </div>
             </div>

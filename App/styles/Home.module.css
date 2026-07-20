@@ -194,6 +194,8 @@
 .titleSectionOffer {
     font-family: var(--font-family-body);
     font-size: 36px;
+    margin-bottom: 10px;
+    color: var(--color-text-title);
 }
 
 .subtitleSectionOffer {

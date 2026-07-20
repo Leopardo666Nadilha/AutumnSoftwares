@@ -1,5 +1,24 @@
 /* Estilos exclusivos do Header/Footer (components/Layout.js) */
 
+/* Escondido fora da tela por padrão; volta a ficar visível ao receber
+   foco (Tab), permitindo pular a navegação repetida do header. */
+.skipLink {
+    position: absolute;
+    top: -60px;
+    left: 12px;
+    z-index: 2000;
+    background-color: var(--color-primary);
+    color: var(--color-text-title);
+    padding: 10px 18px;
+    border-radius: 0 0 8px 8px;
+    font-weight: 600;
+    transition: top 0.2s ease;
+}
+
+.skipLink:focus {
+    top: 0;
+}
+
 .titleFull {
     font-family: var(--font-family-body);
     font-weight: 500;

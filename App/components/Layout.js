@@ -5,6 +5,13 @@ import { FaEnvelope, FaWhatsapp, FaMapMarkerAlt } from 'react-icons/fa';
 import { useRouter } from 'next/router';
 import styles from './Layout.module.css';
 import typography from '../styles/shared/typography.module.css';
+import { SITE_NAME, DEFAULT_OG_IMAGE } from '../lib/siteConfig';
+
+const NAV_LINKS = [
+    { href: '/', label: 'Início' },
+    { href: '/sobre', label: 'Sobre' },
+    { href: '/portfolio', label: 'Portfólio' },
+];
 
 const Header = () => {
     const router = useRouter(); // Hook para obter a rota atual
@@ -21,10 +28,19 @@ const Header = () => {
             </nav>
             <nav className={styles.mainNav}>
                 <div className={styles.navLinksGroup}>
-                    {/* Adicionamos a classe 'active' condicionalmente */}
-                    <Link href="/" className={`${styles.navLink} ${router.pathname === '/' ? styles.active : ''}`}>Início</Link>
-                    <Link href="/sobre" className={`${styles.navLink} ${router.pathname === '/sobre' ? styles.active : ''}`}>Sobre</Link>
-                    <Link href="/portfolio" className={`${styles.navLink} ${router.pathname === '/portfolio' ? styles.active : ''}`}>Portfólio</Link>
+                    {NAV_LINKS.map(({ href, label }) => {
+                        const isActive = router.pathname === href;
+                        return (
+                            <Link
+                                key={href}
+                                href={href}
+                                className={`${styles.navLink} ${isActive ? styles.active : ''}`}
+                                aria-current={isActive ? 'page' : undefined}
+                            >
+                                {label}
+                            </Link>
+                        );
+                    })}
                 </div>
                 <div className={styles.navActionsGroup}>
                     <Link href="/solicitacao" className={styles.ctaLink}>Solicitar Projeto</Link>
@@ -59,9 +75,9 @@ const Footer = () => {
                 <div className={styles.footerColumn}>
                     <h3 className={styles.footerHeading}>Contato</h3>
                     <ul className={styles.footerContact}>
-                        <li><a href="https://wa.me/5547991739602" target="_blank" rel="noopener noreferrer"><FaWhatsapp /> (47) 99173-9602</a></li>
-                        <li><a href="mailto:softwares.autumn@gmail.com"><FaEnvelope /> softwares.autumn@gmail.com</a></li>
-                        <li><a href="https://maps.google.com/?q=Papanduva/SC" target="_blank" rel="noopener noreferrer"><FaMapMarkerAlt /> Papanduva/SC - Brasil</a></li>
+                        <li><a href="https://wa.me/5547991739602" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp: (47) 99173-9602 (abre em nova guia)"><FaWhatsapp aria-hidden="true" /> (47) 99173-9602</a></li>
+                        <li><a href="mailto:softwares.autumn@gmail.com"><FaEnvelope aria-hidden="true" /> softwares.autumn@gmail.com</a></li>
+                        <li><a href="https://maps.google.com/?q=Papanduva/SC" target="_blank" rel="noopener noreferrer" aria-label="Ver localização no mapa (abre em nova guia)"><FaMapMarkerAlt aria-hidden="true" /> Papanduva/SC - Brasil</a></li>
                     </ul>
                 </div>
             </div>
@@ -74,12 +90,26 @@ export default function Layout({ children }) {
     return (
         <>
             <Head>
+                {/* Defaults — cada página sobrescreve title/description/og:*
+                    com o próprio <Head> (o último valor declarado na árvore
+                    vence, e o <Head> da página vem depois deste, dentro de
+                    {children}). */}
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <meta name="theme-color" content="#D95F43" />
                 <title>Autumn Softwares</title>
                 <meta name="description" content="Portfólio de projetos da Autumn Softwares" />
+                <meta property="og:site_name" content={SITE_NAME} />
+                <meta property="og:type" content="website" />
+                <meta property="og:locale" content="pt_BR" />
+                <meta property="og:image" content={DEFAULT_OG_IMAGE} />
+                <meta name="twitter:card" content="summary_large_image" />
                 <link rel="icon" href="/icon.svg"/>
             </Head>
+            {/* Link de pular navegação — só fica visível ao receber foco
+                (teclado/leitor de tela); ver .skipLink em Layout.module.css */}
+            <a href="#main-content" className={styles.skipLink}>Pular para o conteúdo</a>
             <Header />
-            <main>{children}</main>
+            <main id="main-content">{children}</main>
             <Footer />
         </>
     );
