@@ -103,7 +103,8 @@ export default function Layout({ children }) {
                 <meta property="og:locale" content="pt_BR" />
                 <meta property="og:image" content={DEFAULT_OG_IMAGE} />
                 <meta name="twitter:card" content="summary_large_image" />
-                <link rel="icon" href="/icon.svg"/>
+                <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+                <link rel="apple-touch-icon" href="/icon.svg" />
             </Head>
             {/* Link de pular navegação — só fica visível ao receber foco
                 (teclado/leitor de tela); ver .skipLink em Layout.module.css */}
