@@ -25,14 +25,14 @@ const portfolioData = [
     },
     {
         id: 'PrimeCareAI',
-        title: 'Página de pré-lançamento para o PrimeCare.AI',
-        description: 'Página criada para promover o pré-lançamento do PrimeCare.AI, um sistema de IA para otimizar documentação clínica e transcrições de áudio. Acesse para ver a solução em funcionamento.',
+        title: 'PrimeCare.AI: gestão para consultórios médicos',
+        description: 'Software gerencial para microclínicas e consultórios médicos. Controle de faturamento e análise de dados, literatura científica integrada com IA e documentação organizada, conectando rotina clínica e gestão em um só sistema.',
         image: portfolioPreview3,
     },
     {
         id: 'GremioForcaJovem',
         title: 'Site oficial do Grêmio Força Jovem',
-        description: 'Criação de um site para o Grêmio escolar com tema dark e paleta de cores estilo Cyberpunk, com sistema de blog integrado para notícias e eventos, utilizando Next.js e Google Sheets para atualizações fáceis. Inclui medidas anti-spam com HoneyPot.',
+        description: 'Criação de um site para o Grêmio escolar com tema dark e paleta de cores estilo Cyberpunk, com sistema de blog integrado para notícias e eventos, utilizando Next.js. Inclui medidas anti-spam com HoneyPot.',
         image: portfolioPreview2,
     }
 ];

@@ -91,7 +91,7 @@ const customProjectDetails = {
     },
     'GremioForcaJovem': {
         title: 'Site oficial do Grêmio Força Jovem',
-        body: 'Site do Grêmio Força Jovem da escola EEB Alinor Vieira Côrte, desenvolvido com Next.js. Possui um sistema de blog integrado para notícias e eventos com atualização instantânea pelo Google Sheets (escolha devido a facilidade para os jovens utilizarem), além de um sistema HoneyPot para evitar spam de bots.',
+        body: 'Site do Grêmio Força Jovem da escola EEB Alinor Vieira Côrte, desenvolvido com Next.js. Possui um sistema de blog integrado para notícias e eventos com atualização instantânea, além de um sistema HoneyPot para evitar spam de bots.',
     },
     'Aeris':{
         title: 'Sistema de Finanças Pessoais',
@@ -116,8 +116,8 @@ const manualProjects = [
     },
     {
         id: 'PrimeCareAI',
-        title: 'Página de pré-lançamento para o PrimeCare.AI',
-        body: 'Landing page construída para o pré-lançamento do PrimeCare.AI, um sistema de IA criado para otimizar a documentação clínica e a transcrição de áudio das consultas. Desenvolvido com Next.js, a página apresenta um design moderno e responsivo, destacando os principais benefícios do produto e incentivando os visitantes a se inscreverem para atualizações e acesso antecipado.',
+        title: 'PrimeCare.AI: gestão para consultórios médicos',
+        body: 'Software gerencial para microclínicas e consultórios médicos que conecta rotina clínica e gestão em um só sistema. Cuida da receita do consultório com controle de faturamento e análise de dados, oferece acesso a literatura científica integrada com IA e mantém a documentação clínica organizada para uma atuação criteriosa.',
         url: null,
         liveUrl: 'https://www.primecareai.com.br',
     }
