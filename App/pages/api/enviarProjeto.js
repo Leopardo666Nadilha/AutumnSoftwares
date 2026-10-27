@@ -34,6 +34,24 @@ const limiter = rateLimit({
   uniqueTokenPerInterval: 500, // Máximo de 500 IPs únicos por minuto
 });
 
+// Obtém o IP real do cliente. Na Vercel, 'x-real-ip' e 'x-forwarded-for' são
+// sobrescritos pela plataforma, então valores enviados pelo cliente são descartados.
+// Do 'x-forwarded-for' usamos apenas o primeiro IP da lista, pois o cabeçalho
+// pode conter vários IPs e mudar a string completa geraria um token novo a cada requisição.
+const getClientIp = (req) => {
+  const realIp = req.headers['x-real-ip'];
+  if (typeof realIp === 'string' && realIp.trim()) {
+    return realIp.trim();
+  }
+
+  const forwardedFor = req.headers['x-forwarded-for'];
+  if (typeof forwardedFor === 'string' && forwardedFor.trim()) {
+    return forwardedFor.split(',')[0].trim();
+  }
+
+  return req.socket.remoteAddress || 'unknown';
+};
+
 // --- Fim da Implementação do Rate Limiter ---
 
 export default async function handler(req, res) {
@@ -44,7 +62,7 @@ export default async function handler(req, res) {
   try {
     // 1. Proteção contra Abuso (Rate Limiting)
     // Permite no máximo 5 requisições por IP a cada 1 minuto.
-    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+    const ip = getClientIp(req);
     await limiter.check(res, 5, ip);
   } catch {
     return res.status(429).json({ message: 'Muitas requisições. Tente novamente em um minuto.' });
