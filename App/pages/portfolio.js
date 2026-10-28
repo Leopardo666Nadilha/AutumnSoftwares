@@ -120,6 +120,13 @@ const manualProjects = [
         body: 'Software gerencial para microclínicas e consultórios médicos que conecta rotina clínica e gestão em um só sistema. Cuida da receita do consultório com controle de faturamento e análise de dados, oferece acesso a literatura científica integrada com IA e mantém a documentação clínica organizada para uma atuação criteriosa.',
         url: null,
         liveUrl: 'https://www.primecareai.com.br',
+    },
+    {
+        id: 'AutumnRunes',
+        title: 'Autumn Runes: dashboard de criptoativos Runes',
+        body: 'Dashboard para acompanhar os criptoativos do protocolo Runes na rede Bitcoin. Exibe preço, valor de mercado, volume e variação das runas em destaque, gráfico de velas do Bitcoin com dados OHLC em vários períodos e métricas do ecossistema, com conexão de carteira e suporte a múltiplos idiomas. Desenvolvido com Next.js e TypeScript, segue em evolução com funcionalidades de compra e venda a caminho.',
+        url: 'https://github.com/Leopardo666Nadilha/AutumnRunes',
+        liveUrl: 'https://autumn-runes.vercel.app',
     }
 ];
 

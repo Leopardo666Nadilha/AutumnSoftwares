@@ -11,9 +11,9 @@ import sections from '../styles/shared/sections.module.css';
 import typography from '../styles/shared/typography.module.css';
 import { SITE_URL } from '../lib/siteConfig';
 import mainBg from '../public/main-bg.jpg';
-import portfolioPreview2 from '../public/portfolio-preview-2.jpg';
 import portfolioPreview3 from '../public/portfolio-preview-3.jpg';
 import portfolioPreview4 from '../public/portfolio-preview-4.jpg';
+import portfolioPreview5 from '../public/portfolio-preview-5.png';
 
 // Dados dos projetos para a prévia
 const portfolioData = [
@@ -30,10 +30,10 @@ const portfolioData = [
         image: portfolioPreview3,
     },
     {
-        id: 'GremioForcaJovem',
-        title: 'Site oficial do Grêmio Força Jovem',
-        description: 'Criação de um site para o Grêmio escolar com tema dark e paleta de cores estilo Cyberpunk, com sistema de blog integrado para notícias e eventos, utilizando Next.js. Inclui medidas anti-spam com HoneyPot.',
-        image: portfolioPreview2,
+        id: 'AutumnRunes',
+        title: 'Autumn Runes: dashboard de criptoativos Runes',
+        description: 'Dashboard para acompanhar os criptoativos do protocolo Runes no Bitcoin, com preço, valor de mercado, volume e gráfico de velas do BTC, conexão de carteira e suporte a múltiplos idiomas. Desenvolvido com Next.js e TypeScript.',
+        image: portfolioPreview5,
     }
 ];
 
