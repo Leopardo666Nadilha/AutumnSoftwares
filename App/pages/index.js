@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
 import Head from 'next/head';
+import useFadeIn from '../lib/useFadeIn';
 import ScrollDownIndicator from '../components/ScrollDownIndicator';
 import PortfolioHighlights from '../components/PortfolioHighlights';
 import Link from 'next/link';
@@ -13,7 +13,7 @@ import { SITE_URL } from '../lib/siteConfig';
 import mainBg from '../public/main-bg.jpg';
 import portfolioPreview3 from '../public/portfolio-preview-3.jpg';
 import portfolioPreview4 from '../public/portfolio-preview-4.jpg';
-import portfolioPreview5 from '../public/portfolio-preview-5.png';
+import portfolioPreview5 from '../public/portfolio-preview-5.jpg';
 
 // Dados dos projetos para a prévia
 const portfolioData = [
@@ -38,24 +38,7 @@ const portfolioData = [
 ];
 
 export default function HomePage() {
-    useEffect(() => {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target); // Opcional: para a animação acontecer apenas uma vez
-                }
-            });
-        }, {
-            threshold: 0.1 // A animação começa quando 10% do elemento está visível
-        });
-
-        const fadeSections = document.querySelectorAll('.fade-in-section');
-        fadeSections.forEach(section => observer.observe(section));
-
-        // Limpeza ao desmontar o componente
-        return () => fadeSections.forEach(section => observer.unobserve(section));
-    }, []);
+    useFadeIn();
 
     return (
         <>
@@ -76,7 +59,7 @@ export default function HomePage() {
                     sizes="100vw"
                     quality={75}
                     placeholder="blur"
-                    priority
+                    preload
                     style={{ zIndex: 0, objectFit: 'cover' }}
                 />
                 <div className={styles.heroOverlay}></div>

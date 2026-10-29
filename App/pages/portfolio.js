@@ -3,25 +3,10 @@ import Head from 'next/head';
 import styles from '../styles/Portfolio.module.css';
 import typography from '../styles/shared/typography.module.css';
 import { SITE_URL } from '../lib/siteConfig';
+import useFadeIn from '../lib/useFadeIn';
 
 function PortfolioPage({ projects }) {
-    useEffect(() => {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
-
-        const sections = document.querySelectorAll('.fade-in-section');
-        sections.forEach(section => observer.observe(section));
-
-        return () => sections.forEach(section => observer.unobserve(section));
-    }, []);
+    useFadeIn();
 
     useEffect(() => {
         const hash = window.location.hash.replace('#', '');
@@ -85,10 +70,6 @@ function PortfolioPage({ projects }) {
 }
 
 const customProjectDetails = {
-    'PresalePrimeCare': {
-        title: 'Página de pré-lançamento para o PrimeCare.AI',
-        body: 'Landing page construída para o pré-lançamento do PrimeCare.AI, um sistema de IA criado para otimizar a documentação clínica e a transcrição de áudio das consultas. Desenvolvido com Next.js, a página apresenta um design moderno e responsivo, destacando os principais benefícios do produto e incentivando os visitantes a se inscreverem para atualizações e acesso antecipado.',
-    },
     'GremioForcaJovem': {
         title: 'Site oficial do Grêmio Força Jovem',
         body: 'Site do Grêmio Força Jovem da escola EEB Alinor Vieira Côrte, desenvolvido com Next.js. Possui um sistema de blog integrado para notícias e eventos com atualização instantânea, além de um sistema HoneyPot para evitar spam de bots.',
@@ -101,7 +82,6 @@ const customProjectDetails = {
 
 // Lista dos repositórios no portfólio.
 const portfolioRepoNames = [
-    'PresalePrimeCare',
     'GremioForcaJovem',
     'Aeris'
 ];
@@ -132,8 +112,21 @@ const manualProjects = [
 
 export async function getStaticProps() {
     const GITHUB_USERNAME = 'leopardo666nadilha';
-    const res = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&direction=desc`);
-    const repos = await res.json();
+
+    // Se a API do GitHub falhar (ex.: limite de requisições no build), o
+    // portfólio segue só com os projetos manuais em vez de quebrar o deploy.
+    let repos = [];
+    try {
+        const res = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&direction=desc&per_page=100`);
+        const data = await res.json();
+        if (res.ok && Array.isArray(data)) {
+            repos = data;
+        } else {
+            console.warn('GitHub API retornou erro ao buscar repositórios:', res.status, data?.message);
+        }
+    } catch (error) {
+        console.warn('Falha ao buscar repositórios do GitHub:', error);
+    }
 
     const projects = repos
         .filter(repo => repo.description && repo.homepage) 

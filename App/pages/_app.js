@@ -7,19 +7,20 @@ import { ThemeProvider } from '../context/ThemeContext';
 import { Inter, Merriweather } from 'next/font/google';
 
 // Configuração da fonte para o corpo do texto
+// As variáveis CSS são definidas no <style jsx global> abaixo.
 const inter = Inter({
     subsets: ['latin'],
     display: 'swap',
-    variable: '--font-family-body', // Define a variável CSS
 });
 
 // Configuração da fonte para os títulos
+// Só o peso 400 é usado: o reset do globals.css faz os títulos herdarem o
+// peso do body. O itálico aparece nas citações da Home (.compromiseItem).
 const merriweather = Merriweather({
     subsets: ['latin'],
-    weight: ['300', '400', '700', '900'],
+    weight: ['400'],
     style: ['normal', 'italic'],
     display: 'swap',
-    variable: '--font-family-headings', // Define a variável CSS
 });
 
 function MyApp({ Component, pageProps }) {

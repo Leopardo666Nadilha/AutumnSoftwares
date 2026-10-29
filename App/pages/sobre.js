@@ -2,30 +2,14 @@ import Image from 'next/image';
 import Head from 'next/head';
 import aboutBg from '../public/about-bg.jpg';
 import { PiHandshake, PiChatCircleDots, PiCrosshair } from 'react-icons/pi';
-import { useEffect } from 'react';
+import useFadeIn from '../lib/useFadeIn';
 import styles from '../styles/Sobre.module.css';
 import sections from '../styles/shared/sections.module.css';
 import typography from '../styles/shared/typography.module.css';
 import { SITE_URL } from '../lib/siteConfig';
 
 export default function AboutPage() {
-    useEffect(() => {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
-
-        const fadeSections = document.querySelectorAll('.fade-in-section');
-        fadeSections.forEach(section => observer.observe(section));
-
-        return () => fadeSections.forEach(section => observer.unobserve(section));
-    }, []);
+    useFadeIn();
     return (
         <div className={styles.aboutPageContent}>
             <Head>

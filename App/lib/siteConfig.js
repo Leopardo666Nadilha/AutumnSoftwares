@@ -3,4 +3,5 @@
 // esse valor abaixo é só um fallback pra desenvolvimento/preview.
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.autumnsoftwares.com';
 export const SITE_NAME = 'Autumn Softwares';
-export const DEFAULT_OG_IMAGE = `${SITE_URL}/main-bg.jpg`;
+// Versão 1200x630 do main-bg.jpg, no tamanho recomendado para prévias de link.
+export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg`;
