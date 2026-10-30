@@ -5,7 +5,7 @@ import { FaEnvelope, FaWhatsapp, FaMapMarkerAlt } from 'react-icons/fa';
 import { useRouter } from 'next/router';
 import styles from './Layout.module.css';
 import typography from '../styles/shared/typography.module.css';
-import { SITE_NAME, DEFAULT_OG_IMAGE } from '../lib/siteConfig';
+import { SITE_NAME, DEFAULT_OG_IMAGE, STRUCTURED_DATA } from '../lib/siteConfig';
 
 const NAV_LINKS = [
     { href: '/', label: 'Início' },
@@ -103,8 +103,14 @@ export default function Layout({ children }) {
                 <meta property="og:locale" content="pt_BR" />
                 <meta property="og:image" content={DEFAULT_OG_IMAGE} />
                 <meta name="twitter:card" content="summary_large_image" />
+                <link rel="icon" href="/favicon.ico" sizes="48x48" />
                 <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-                <link rel="apple-touch-icon" href="/icon.svg" />
+                <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+                <script
+                    key="structured-data"
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(STRUCTURED_DATA) }}
+                />
             </Head>
             {/* Link de pular navegação — só fica visível ao receber foco
                 (teclado/leitor de tela); ver .skipLink em Layout.module.css */}

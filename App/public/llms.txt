@@ -1,0 +1,34 @@
+# Autumn Softwares
+
+> Empresa de desenvolvimento de software sob demanda, fundada em 2025 em Papanduva/SC, Brasil. Cria aplicações web, aplicativos mobile, automações de processos e integrações personalizadas, com processo transparente do início ao fim.
+
+A Autumn Softwares começa cada projeto com uma imersão no desafio do cliente para definir a estratégia e a arquitetura antes do código. O desenvolvimento segue em ciclos curtos, com entregas previsíveis e visibilidade total do progresso. Atende empresas de todo o Brasil.
+
+## Serviços
+
+- Desenvolvimento de websites e landing pages
+- Aplicações web (SaaS, dashboards, sistemas de gestão)
+- Aplicativos mobile (iOS e Android)
+- Automação de processos e integrações entre sistemas
+- Consultoria para definição de escopo
+
+## Páginas
+
+- [Início](https://www.autumnsoftwares.com/): apresentação, processo de trabalho e projetos em destaque
+- [Sobre](https://www.autumnsoftwares.com/sobre): história, valores e filosofia da empresa
+- [Portfólio](https://www.autumnsoftwares.com/portfolio): estudos de caso e projetos desenvolvidos
+- [Solicitar projeto](https://www.autumnsoftwares.com/solicitacao): formulário para pedir uma proposta
+
+## Projetos
+
+- [Motor Tributário Autumn](https://fiscal.autumnsoftwares.com): plataforma de emissão e consulta de notas fiscais no novo modelo da reforma tributária, aprovada pela SEFAZ, com dashboard e ferramentas de gestão tributária
+- [PrimeCare.AI](https://www.primecareai.com.br): software gerencial para microclínicas e consultórios médicos, com controle de faturamento, análise de dados, literatura científica integrada com IA e documentação clínica organizada
+- [Autumn Runes](https://autumn-runes.vercel.app): dashboard de criptoativos do protocolo Runes na rede Bitcoin
+- [Site do Grêmio Força Jovem](https://gremio-forca-jovem.vercel.app): site escolar com blog de notícias e eventos e proteção anti-spam
+- [Aeris](https://aeris-financial.vercel.app): plataforma PWA de controle de finanças pessoais, mobile-first
+
+## Contato
+
+- E-mail: softwares.autumn@gmail.com
+- WhatsApp: +55 (47) 99173-9602
+- Localização: Papanduva/SC, Brasil
